@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="5.11.0@c9b192ab8400fdaf04b2b13d110575adc879aa90">
+  <file src="src/Http/Controllers/Controller.php">
+    <UnusedClass>
+      <code>Controller</code>
+    </UnusedClass>
+  </file>
+  <file src="src/Http/Middleware/RedirectIfAuthenticated.php">
+    <PossiblyUnusedMethod>
+      <code>handle</code>
+    </PossiblyUnusedMethod>
+  </file>
+  <file src="src/Providers/AppServiceProvider.php">
+    <PossiblyUnusedMethod>
+      <code>boot</code>
+    </PossiblyUnusedMethod>
+  </file>
+</files>

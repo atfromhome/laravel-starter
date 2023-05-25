@@ -1,0 +1,35 @@
+name: Update changelog
+
+on:
+  schedule:
+    - cron: '0 0 * * 0'
+
+jobs:
+  composer:
+    name: Composer
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: /tmp/composer-cache
+          key: ${{ hashFiles('**/composer.lock') }}
+
+      - name: Running composer bump
+        uses: php-actions/composer@v6
+        with:
+          php_version: '8.1'
+          command: bump
+
+      - name: Running composer update
+        uses: php-actions/composer@v6
+        with:
+          php_version: '8.1'
+          command: update
+
+      - name: Commit changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Composer update
