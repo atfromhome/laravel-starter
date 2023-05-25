@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Http\Responses\Fortify;
 
 use Inertia\Inertia;
 use Symfony\Component\HttpFoundation\Response;
 use Laravel\Fortify\Contracts\ResetPasswordViewResponse;
 
-class ResetPasswordView implements ResetPasswordViewResponse
+final class ResetPasswordView implements ResetPasswordViewResponse
 {
     public function toResponse($request): Response
     {

@@ -52,7 +52,7 @@ final class FortifyServiceProvider extends ServiceProvider
     private function configureRateLimiter(): void
     {
         RateLimiter::for('login', static function (Request $request): Limit {
-            $email = (string)$request->string('email');
+            $email = (string) $request->string('email');
 
             return Limit::perMinute(5)->by($email . $request->ip());
         });
