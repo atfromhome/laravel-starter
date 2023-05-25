@@ -57,7 +57,7 @@ return [
 
     'url' => env('APP_URL', 'http://localhost'),
 
-    'logo_url' => env('APP_LOGO_URL', 'https://laravel.com/img/notification-logo.png'),
+    'logo_url' => env('LOGO_URL', 'https://laravel.com/img/notification-logo.png'),
 
     'asset_url' => env('ASSET_URL'),
 
