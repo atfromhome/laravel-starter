@@ -1,0 +1,136 @@
+Running php-build composer
+WARNING! Your password will be stored unencrypted in /home/runner/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+Pulling docker.pkg.github.com/atfromhome/laravel-starter/php-actions_composer_laravel-starter:php-8.1-build2.1.0
+Error response from daemon: manifest unknown
+Dockerfile:
+FROM php:8.1-cli-alpine
+RUN apk add --update --no-cache zip git bash openssh
+Sending build context to Docker daemon  1.172MB
+Step 1/2 : FROM php:8.1-cli-alpine
+8.1-cli-alpine: Pulling from library/php
+8a49fdb3b6a5: Pulling fs layer
+482c13708aab: Pulling fs layer
+4231935b557b: Pulling fs layer
+2889ac5addf8: Pulling fs layer
+742891e44141: Pulling fs layer
+28625a174cb1: Pulling fs layer
+2889ac5addf8: Waiting
+742891e44141: Waiting
+2b34faf95a48: Pulling fs layer
+c1185acaf162: Pulling fs layer
+b4e8272a1e43: Pulling fs layer
+28625a174cb1: Waiting
+2b34faf95a48: Waiting
+c1185acaf162: Waiting
+b4e8272a1e43: Waiting
+4231935b557b: Verifying Checksum
+4231935b557b: Download complete
+482c13708aab: Verifying Checksum
+482c13708aab: Download complete
+8a49fdb3b6a5: Verifying Checksum
+8a49fdb3b6a5: Download complete
+2889ac5addf8: Verifying Checksum
+2889ac5addf8: Download complete
+28625a174cb1: Verifying Checksum
+28625a174cb1: Download complete
+742891e44141: Verifying Checksum
+742891e44141: Download complete
+8a49fdb3b6a5: Pull complete
+2b34faf95a48: Verifying Checksum
+2b34faf95a48: Download complete
+c1185acaf162: Verifying Checksum
+c1185acaf162: Download complete
+b4e8272a1e43: Verifying Checksum
+b4e8272a1e43: Download complete
+482c13708aab: Pull complete
+4231935b557b: Pull complete
+2889ac5addf8: Pull complete
+742891e44141: Pull complete
+28625a174cb1: Pull complete
+2b34faf95a48: Pull complete
+c1185acaf162: Pull complete
+b4e8272a1e43: Pull complete
+Digest: sha256:91322754f770ade8e1c5fb256b2f1b01ae9a6b454b3d1abb5aaaee51dd7b9f68
+Status: Downloaded newer image for php:8.1-cli-alpine
+ ---> be85d442be67
+Step 2/2 : RUN apk add --update --no-cache zip git bash openssh
+ ---> Running in 1320413d6efd
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/main/x86_64/APKINDEX.tar.gz
+fetch https://dl-cdn.alpinelinux.org/alpine/v3.18/community/x86_64/APKINDEX.tar.gz
+(1/14) Installing bash (5.2.15-r5)
+Executing bash-5.2.15-r5.post-install
+(2/14) Installing libexpat (2.5.0-r1)
+(3/14) Installing pcre2 (10.42-r1)
+(4/14) Installing git (2.40.1-r0)
+(5/14) Installing openssh-keygen (9.3_p1-r3)
+(6/14) Installing libedit (20221030.3.1-r1)
+(7/14) Installing openssh-client-common (9.3_p1-r3)
+(8/14) Installing openssh-client-default (9.3_p1-r3)
+(9/14) Installing openssh-sftp-server (9.3_p1-r3)
+(10/14) Installing openssh-server-common (9.3_p1-r3)
+(11/14) Installing openssh-server (9.3_p1-r3)
+(12/14) Installing openssh (9.3_p1-r3)
+(13/14) Installing unzip (6.0-r14)
+(14/14) Installing zip (3.0-r12)
+Executing busybox-1.36.0-r9.trigger
+OK: 33 MiB in 51 packages
+Removing intermediate container 1320413d6efd
+ ---> 0fa2911e2302
+Successfully built 0fa2911e2302
+Successfully tagged docker.pkg.github.com/atfromhome/laravel-starter/php-actions_composer_laravel-starter:php-8.1-build2.1.0
+The push refers to repository [docker.pkg.github.com/atfromhome/laravel-starter/php-actions_composer_laravel-starter]
+3647c119c855: Preparing
+5024cc3d61a1: Preparing
+c95696a6bdff: Preparing
+cffb126e2513: Preparing
+e3a8d8961326: Preparing
+d5d3729b78dd: Preparing
+9bbacedbd5e4: Preparing
+1a72c946ba2b: Preparing
+e759f13eb8bc: Preparing
+bb01bd7e32b5: Preparing
+d5d3729b78dd: Waiting
+9bbacedbd5e4: Waiting
+1a72c946ba2b: Waiting
+e759f13eb8bc: Waiting
+bb01bd7e32b5: Waiting
+e3a8d8961326: Pushed
+c95696a6bdff: Pushed
+5024cc3d61a1: Pushed
+3647c119c855: Pushed
+9bbacedbd5e4: Pushed
+1a72c946ba2b: Pushed
+d5d3729b78dd: Pushed
+e759f13eb8bc: Pushed
+cffb126e2513: Pushed
+bb01bd7e32b5: Pushed
+php-8.1-build2.1.0: digest: sha256:f5c4f132597ab22febd9c394a8a81553551808cfa81807f148399642caa7999c size: 2413
+Docker tag: docker.pkg.github.com/atfromhome/laravel-starter/php-actions_composer_laravel-starter:php-8.1-build2.1.0
+No private keys supplied
+Command: composer bump --no-interaction
+Skipping env variable PWD
+Skipping env variable HOME
+Skipping env variable SHLVL
+Skipping env variable PATH
+Running php-build composer
+WARNING! Your password will be stored unencrypted in /home/runner/.docker/config.json.
+Configure a credential helper to remove this warning. See
+https://docs.docker.com/engine/reference/commandline/login/#credentials-store
+
+Login Succeeded
+Pulling docker.pkg.github.com/atfromhome/laravel-starter/php-actions_composer_laravel-starter:php-8.1-build2.1.0
+php-8.1-build2.1.0: Pulling from atfromhome/laravel-starter/php-actions_composer_laravel-starter
+Digest: sha256:f5c4f132597ab22febd9c394a8a81553551808cfa81807f148399642caa7999c
+Status: Image is up to date for docker.pkg.github.com/atfromhome/laravel-starter/php-actions_composer_laravel-starter:php-8.1-build2.1.0
+docker.pkg.github.com/atfromhome/laravel-starter/php-actions_composer_laravel-starter:php-8.1-build2.1.0
+Docker tag: docker.pkg.github.com/atfromhome/laravel-starter/php-actions_composer_laravel-starter:php-8.1-build2.1.0
+No private keys supplied
+Command: composer update --no-interaction
+Skipping env variable PWD
+Skipping env variable HOME
+Skipping env variable SHLVL
+Skipping env variable PATH
