@@ -14,8 +14,10 @@ import {
 } from "@chakra-ui/react";
 import { Link, useForm } from "@inertiajs/react";
 import { ChevronsUpDown } from "lucide-react";
+import { useUser } from "~/hooks";
 
 export const NavAccountButton = (props: FlexProps) => {
+  const user = useUser();
   const buttonProps = useMenuButton(props);
 
   return (
@@ -41,10 +43,10 @@ export const NavAccountButton = (props: FlexProps) => {
         <Img w="8" h="8" rounded="md" objectFit="cover" src="/avatar.png" alt="Nama User" />
         <Box textAlign="start">
           <Box noOfLines={1} fontWeight="semibold">
-            Nuradiyana
+            {user?.name}
           </Box>
           <Box fontSize="xs" color="gray.400">
-            ID 2022.01.01.001
+            {user?.email}
           </Box>
         </Box>
       </HStack>
@@ -57,7 +59,7 @@ export const NavAccountButton = (props: FlexProps) => {
 
 export const NavAccount = () => {
   const form = useForm();
-  
+
   return (
     <Menu matchWidth>
       <NavAccountButton />
