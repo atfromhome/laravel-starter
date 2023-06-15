@@ -1,4 +1,4 @@
-name: Running ECS
+name: Running pint
 
 on:
   push:
@@ -24,8 +24,8 @@ jobs:
       - name: Install composer dependencies
         uses: ramsey/composer-install@v1
 
-      - name: Run ECS
-        run: ./vendor/bin/ecs --fix
+      - name: Fixing styling
+        run: ./vendor/bin/pint
 
       - name: Commit changes
         uses: stefanzweifel/git-auto-commit-action@v4
