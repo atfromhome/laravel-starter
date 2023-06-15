@@ -1,59 +1,52 @@
-import { Heading, Stack, StackProps, Text, useBreakpointValue } from "@chakra-ui/react";
+import { Box, Container, HStack, Stack, Text } from "@chakra-ui/react";
 import { Head } from "@inertiajs/react";
-import { Navbar } from "./navbar";
-import { ReactNode, useMemo } from "react";
-import { AppLayout } from "./app-layout";
-import { Sidebar } from "./sidebar";
-import { appMenus, settingMenus } from "./menus";
+import React, { useMemo } from "react";
 
-export type AppPageProps = {
+export interface AppPageProps {
   title: string;
   subtitle?: string;
-  action?: ReactNode;
-  settingPage?: boolean;
-} & StackProps;
+  action?: React.ReactElement;
+  children?: React.ReactNode;
+}
 
-export const AppPage = ({
-  title,
-  subtitle,
-  action,
-  settingPage = false,
-  children,
-  ...props
-}: AppPageProps) => {
-  const isDesktop = useBreakpointValue({ base: false, lg: true });
-
-  const menus = useMemo(() => (settingPage ? settingMenus : appMenus), [settingPage]);
+export const AppPage = (props: AppPageProps) => {
+  const title = useMemo(() => `${props.title} - Laravel`, [props.title]);
 
   return (
-    <AppLayout
-      sidebar={
-        isDesktop ? (
-          <Sidebar settingPage={settingPage} menus={menus} />
-        ) : (
-          <Navbar settingPage={settingPage} menus={menus} />
-        )
-      }
-    >
-      <Stack
-        spacing="4"
-        direction={{ base: "column", lg: "row" }}
-        justify="space-between"
-        align={{ base: "start", lg: "center" }}
-        {...props}
-      >
-        <Head>
-          <title>{title}</title>
-        </Head>
-        <Stack spacing="1">
-          <Heading size={{ base: "lg" }} fontWeight="semibold">
-            {title}
-          </Heading>
-          <Text color="muted">{subtitle}</Text>
-        </Stack>
-        {action}
-      </Stack>
-      {children}
-    </AppLayout>
+    <React.Fragment>
+      <Head>
+        <title>{title}</title>
+      </Head>
+      <Box bg="stale.600" pt={{ base: "0", lg: "3" }} flex="1">
+        <Box
+          height="full"
+          bg="stale.50"
+          borderTopLeftRadius={{ base: "none", lg: "2rem" }}
+          overflowY="auto"
+        >
+          <Container p="8" flex="1" maxW="7xl">
+            <Stack spacing={{ base: "8", lg: "6" }}>
+              <Stack
+                spacing="4"
+                direction={{ base: "column", lg: "row" }}
+                justify="space-between"
+                align={{ base: "start", lg: "center" }}
+              >
+                <Stack spacing="1">
+                  <Text fontSize={{ base: "xl", lg: "2xl" }} fontWeight="medium">
+                    {props.title}
+                  </Text>
+                  <Text color="stale.400" fontSize={{ base: "md", lg: "lg" }}>
+                    {props.subtitle}
+                  </Text>
+                </Stack>
+                <HStack spacing="3">{props.action}</HStack>
+              </Stack>
+              {props.children}
+            </Stack>
+          </Container>
+        </Box>
+      </Box>
+    </React.Fragment>
   );
 };

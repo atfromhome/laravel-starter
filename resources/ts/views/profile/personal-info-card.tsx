@@ -11,7 +11,8 @@ import {
   FormLabel,
   Input,
   VStack,
-  chakra
+  chakra,
+  useToast
 } from "@chakra-ui/react";
 import { useForm } from "@inertiajs/react";
 import { PasswordInput } from "~/components/forms";
@@ -22,6 +23,11 @@ type PersonalInfoCardProps = CardProps & {
 };
 
 export const PersonalInfoCard = ({ user, ...props }: PersonalInfoCardProps) => {
+  const toast = useToast({
+    position: "bottom-right",
+    variant: "subtle"
+  });
+
   const form = useForm({
     name: user.name || "",
     email: user.email || ""
@@ -34,7 +40,16 @@ export const PersonalInfoCard = ({ user, ...props }: PersonalInfoCardProps) => {
       onSubmit={(e) => {
         e.preventDefault();
 
-        form.put("/user/profile-information");
+        form.put("/user/profile-information", {
+          onSuccess: () => {
+            toast({
+              title: "Berhasil!!",
+              description: "Data profile anda berhasil di simpan",
+              status: "success",
+              isClosable: true
+            });
+          }
+        });
       }}
       w="full"
       {...props}

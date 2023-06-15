@@ -11,13 +11,19 @@ import {
   Input,
   VStack,
   chakra,
-  useBoolean
+  useBoolean,
+  useToast
 } from "@chakra-ui/react";
 import { useForm } from "@inertiajs/react";
 
 type UpdatePasswordCardProps = CardProps;
 
 export const UpdatePasswordCard = ({ ...props }: UpdatePasswordCardProps) => {
+  const toast = useToast({
+    position: "bottom-right",
+    variant: "subtle"
+  });
+
   const [showPassword, handleShowPassword] = useBoolean(false);
 
   const form = useForm({
@@ -34,7 +40,15 @@ export const UpdatePasswordCard = ({ ...props }: UpdatePasswordCardProps) => {
         e.preventDefault();
 
         form.put("/user/password", {
-          onSuccess: () => form.setDefaults()
+          preserveState: false,
+          onSuccess: () => {
+            toast({
+              title: "Berhasil!!",
+              description: "Password login anda berhasil di ubah",
+              status: "success",
+              isClosable: true
+            });
+          }
         });
       }}
       w="full"
@@ -76,10 +90,7 @@ export const UpdatePasswordCard = ({ ...props }: UpdatePasswordCardProps) => {
             <FormErrorMessage>{form.errors.password_confirmation}</FormErrorMessage>
           </FormControl>
           <FormControl>
-            <Checkbox
-              checked={showPassword}
-              onChange={handleShowPassword.toggle}
-            >
+            <Checkbox checked={showPassword} onChange={handleShowPassword.toggle}>
               Show password
             </Checkbox>
           </FormControl>

@@ -14,10 +14,11 @@ import {
   chakra
 } from "@chakra-ui/react";
 import { Head, Link, useForm } from "@inertiajs/react";
+import { Fragment, ReactNode } from "react";
 import { Logo } from "~/components";
 import { PasswordInput } from "~/components/forms";
 
-export default function Page() {
+function Page() {
   const form = useForm({
     name: "",
     email: "",
@@ -107,3 +108,7 @@ export default function Page() {
     </Center>
   );
 }
+
+Page.layout = (page: ReactNode) => <Fragment>{page}</Fragment>;
+
+export default Page;

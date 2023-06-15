@@ -1,24 +1,28 @@
-import { Container, Flex, FlexProps, Stack } from "@chakra-ui/react";
-import { ReactNode } from "react";
+import {
+  Box,
+  Flex,
+  FlexProps,
+  HStack,
+  useBreakpointValue,
+} from "@chakra-ui/react";
+import { Sidebar } from "./sidebar";
+import { Navbar } from "./navbar";
 
-export interface AppLayoutProps extends FlexProps {
-  sidebar: ReactNode;
+interface AppLayoutProps extends FlexProps {
+  children: React.ReactNode;
 }
 
-export const AppLayout = ({ children, sidebar, ...props }: AppLayoutProps) => {
+export function AppLayout({ children, ...props }: AppLayoutProps) {
+  const isDesktop = useBreakpointValue({ base: false, lg: true });
   return (
     <Flex
-      as="section"
+      as="main"
       direction={{ base: "column", lg: "row" }}
       height="100vh"
-      bg="primary.50"
       overflowY="auto"
-      {...props}
     >
-      {sidebar}
-      <Container py={{ base: 6, lg: 8 }} flex="1" maxW="7xl">
-        <Stack spacing={{ base: "8", lg: "6" }}>{children}</Stack>
-      </Container>
+      {isDesktop ? <Sidebar /> : <Navbar />}
+      {children}
     </Flex>
   );
-};
+}

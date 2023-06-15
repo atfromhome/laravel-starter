@@ -1,11 +1,20 @@
-import { Home, UserCircle } from "lucide-react";
-import { SidebarMenu } from "./sidebar";
+import { As } from "@chakra-ui/react";
+import { Home } from "lucide-react";
 
-export const appMenus: SidebarMenu[] = [
-  { label: "Home", icon: Home, href: "/" }
+export interface MenuGroup {
+  label: string;
+  menus: Array<Menu>;
+}
+
+export interface Menu {
+  label: string;
+  icon: As;
+  href: string;
+}
+
+export const appMenus: Array<MenuGroup> = [
+  {
+    label: "Main",
+    menus: [{ label: "Home", icon: Home, href: "/" }]
+  }
 ];
-
-export const settingMenus: SidebarMenu[] = [
-  { label: "Profile", icon: UserCircle, href: "/profile" }
-];
-
