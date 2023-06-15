@@ -10,6 +10,6 @@ final class Kernel extends Console\Kernel
 {
     protected function commands(): void
     {
-        $this->load(__DIR__ . '/Commands');
+        $this->load(__DIR__.'/Commands');
     }
 }
