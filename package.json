@@ -22,7 +22,7 @@
         "vite": "^4.3.5"
     },
     "dependencies": {
-        "@chakra-ui/react": "^2.6.1",
+        "@chakra-ui/react": "^2.7.0",
         "@emotion/react": "^11.11.0",
         "@emotion/styled": "^11.11.0",
         "@fontsource/inter": "^4.5.15",
