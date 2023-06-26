@@ -27,7 +27,7 @@
         "@emotion/react": "^11.11.1",
         "@emotion/styled": "^11.11.0",
         "@fontsource-variable/inter": "^5.0.3",
-        "framer-motion": "^10.12.12",
+        "framer-motion": "^10.12.17",
         "lucide-react": "^0.224.0"
     }
 }
