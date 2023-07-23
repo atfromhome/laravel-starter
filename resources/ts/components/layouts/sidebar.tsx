@@ -25,11 +25,10 @@ export const Sidebar = () => {
       bg="stale.600"
       color="white"
       fontSize="sm"
-      overflowY="auto"
     >
       <Flex h="full" direction="column" px="4" py="4">
         <NavAccount />
-        <Stack spacing="8" flex="1" overflowY="scroll" mt={2} pt="6">
+        <Stack spacing="8" flex="1" overflowY="auto" mt={2} pt="6">
           {renderMenus}
         </Stack>
       </Flex>
