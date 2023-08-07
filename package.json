@@ -14,7 +14,7 @@
         "@vitejs/plugin-react": "^4.0.4",
         "eslint-config-prettier": "^8.9.0",
         "eslint-plugin-prettier": "^5.0.0",
-        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-react": "^7.33.1",
         "laravel-vite-plugin": "^0.7.5",
         "prettier": "3.0.0",
         "react": "^18.2.0",
