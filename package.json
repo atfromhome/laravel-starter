@@ -28,6 +28,6 @@
         "@emotion/styled": "^11.11.0",
         "@fontsource-variable/inter": "^5.0.16",
         "framer-motion": "^10.16.4",
-        "lucide-react": "^0.279.0"
+        "lucide-react": "^0.302.0"
     }
 }
