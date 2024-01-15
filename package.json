@@ -13,7 +13,7 @@
         "@typescript-eslint/parser": "^6.7.0",
         "@vitejs/plugin-react": "^4.2.1",
         "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.0.1",
+        "eslint-plugin-prettier": "^5.1.3",
         "eslint-plugin-react": "^7.33.2",
         "laravel-vite-plugin": "^0.8.1",
         "prettier": "3.0.3",
