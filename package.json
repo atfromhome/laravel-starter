@@ -6,7 +6,7 @@
         "build": "vite build"
     },
     "devDependencies": {
-        "@inertiajs/react": "^1.0.10",
+        "@inertiajs/react": "^1.0.14",
         "@types/react": "^18.2.48",
         "@types/react-dom": "^18.2.14",
         "@typescript-eslint/eslint-plugin": "^6.19.0",
