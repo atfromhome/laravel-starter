@@ -33,7 +33,7 @@ final class RouteServiceProvider extends Providers\RouteServiceProvider
             /** @var User|null $user */
             $user = $request->user();
 
-            if (null === $user) {
+            if ($user === null) {
                 return Limit::perMinute(60)->by(
                     $request->ip()
                 );

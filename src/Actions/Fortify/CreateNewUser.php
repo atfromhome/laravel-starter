@@ -6,9 +6,9 @@ namespace App\Actions\Fortify;
 
 use App\Models\User;
 use Illuminate\Validation\Rule;
-use Laravel\Fortify\Rules\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rules\Password;
 use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\CreatesNewUsers;
 
@@ -27,7 +27,7 @@ final class CreateNewUser implements CreatesNewUsers
                 'required', 'string', 'email', 'max:255', Rule::unique(User::class),
             ],
             'password' => [
-                'required', 'string', new Password(), 'confirmed',
+                'required', 'string', Password::required(), 'confirmed',
             ],
         ])->validate();
 

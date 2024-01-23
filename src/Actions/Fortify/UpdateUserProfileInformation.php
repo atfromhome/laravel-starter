@@ -8,14 +8,10 @@ use App\Models\User;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\UpdatesUserProfileInformation;
 
 final class UpdateUserProfileInformation implements UpdatesUserProfileInformation
 {
-    /**
-     * @throws ValidationException
-     */
     public function update(User $user, array $input): void
     {
         Validator::make($input, [
