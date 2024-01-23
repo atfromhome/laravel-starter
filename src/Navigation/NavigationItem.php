@@ -8,6 +8,9 @@ use BackedEnum;
 use Webmozart\Assert\Assert;
 use Illuminate\Contracts\Support\Arrayable;
 
+/**
+ * @template-implements Arrayable<array-key, string|null>
+ */
 final class NavigationItem implements Arrayable
 {
     private ?string $label = null;
@@ -50,7 +53,7 @@ final class NavigationItem implements Arrayable
 
     public function permission(string|BackedEnum $permission): self
     {
-        $this->permission = $permission instanceof BackedEnum ? $permission->value : $permission;
+        $this->permission = $permission instanceof BackedEnum ? (string) $permission->value : $permission;
 
         return $this;
     }

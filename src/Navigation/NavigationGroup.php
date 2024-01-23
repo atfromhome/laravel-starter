@@ -7,6 +7,9 @@ namespace App\Navigation;
 use Webmozart\Assert\Assert;
 use Illuminate\Contracts\Support\Arrayable;
 
+/**
+ * @template-implements Arrayable<array-key, array{label: string, menus: array<array-key, mixed>}>
+ */
 final class NavigationGroup implements Arrayable
 {
     /** @var NavigationItem[] */
@@ -74,7 +77,7 @@ final class NavigationGroup implements Arrayable
     {
         return [
             'label' => $this->getLabel(),
-            'menus' => \array_map(fn (Arrayable $item) => $item->toArray(), $this->getMenus()),
+            'menus' => \array_map(static fn (Arrayable $item) => $item->toArray(), $this->getMenus()),
         ];
     }
 }
