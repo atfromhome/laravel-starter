@@ -78,7 +78,7 @@ export const Navbar = () => {
           preserveScrollBarGap
         >
           <DrawerOverlay />
-          <DrawerContent>
+          <DrawerContent maxW={{ base: "full", sm: "18rem" }} w={{ base: "full", sm: "18rem" }}>
             <Sidebar />
           </DrawerContent>
         </Drawer>

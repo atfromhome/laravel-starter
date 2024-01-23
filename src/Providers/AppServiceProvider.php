@@ -13,5 +13,6 @@ final class AppServiceProvider extends ServiceProvider
     {
         Model::unguard();
         Model::preventsLazyLoading();
+        Model::preventAccessingMissingAttributes();
     }
 }

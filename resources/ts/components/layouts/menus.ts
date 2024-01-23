@@ -1,5 +1,6 @@
 import { As } from "@chakra-ui/react";
-import { Home } from "lucide-react";
+import { useMemo } from "react";
+import { usePageProps } from "~/hooks";
 
 export interface MenuGroup {
   label: string;
@@ -12,9 +13,8 @@ export interface Menu {
   href: string;
 }
 
-export const appMenus: Array<MenuGroup> = [
-  {
-    label: "Main",
-    menus: [{ label: "Home", icon: Home, href: "/" }]
-  }
-];
+export const useAppMenus = (): MenuGroup[] => {
+  const props = usePageProps();
+
+  return props.menus as Array<MenuGroup>;
+};

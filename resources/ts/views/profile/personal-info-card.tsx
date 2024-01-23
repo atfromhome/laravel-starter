@@ -1,11 +1,9 @@
 import {
-  Box,
   Button,
   Card,
   CardBody,
   CardFooter,
   CardProps,
-  Divider,
   FormControl,
   FormErrorMessage,
   FormLabel,
@@ -15,7 +13,6 @@ import {
   useToast
 } from "@chakra-ui/react";
 import { useForm } from "@inertiajs/react";
-import { PasswordInput } from "~/components/forms";
 import { UseUserReturn } from "~/hooks";
 
 type PersonalInfoCardProps = CardProps & {
@@ -23,10 +20,7 @@ type PersonalInfoCardProps = CardProps & {
 };
 
 export const PersonalInfoCard = ({ user, ...props }: PersonalInfoCardProps) => {
-  const toast = useToast({
-    position: "bottom-right",
-    variant: "subtle"
-  });
+  const toast = useToast();
 
   const form = useForm({
     name: user.name || "",
@@ -36,7 +30,6 @@ export const PersonalInfoCard = ({ user, ...props }: PersonalInfoCardProps) => {
   return (
     <Card
       as={chakra.form}
-      variant="elevated"
       onSubmit={(e) => {
         e.preventDefault();
 

@@ -25,7 +25,16 @@ createInertiaApp({
   setup({ el, App, props }) {
     createRoot(el).render(
       <StrictMode>
-        <ChakraProvider theme={theme}>
+        <ChakraProvider
+          theme={theme}
+          toastOptions={{
+            defaultOptions: {
+              position: "bottom",
+              variant: "subtle",
+              isClosable: true
+            }
+          }}
+        >
           <App {...props} />
         </ChakraProvider>
       </StrictMode>

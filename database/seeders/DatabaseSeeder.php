@@ -14,6 +14,7 @@ final class DatabaseSeeder extends Seeder
         UserFactory::new([
             'name' => 'Administrator',
             'email' => 'admin@fromhome.dev',
+            'is_super_admin' => true,
         ])->createOne();
     }
 }

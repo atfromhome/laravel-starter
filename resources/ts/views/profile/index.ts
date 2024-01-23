@@ -1,2 +1,2 @@
-export * from "./personal-info-card"
-export * from "./update-password-card"
+export * from "./personal-info-card";
+export * from "./update-password-card";

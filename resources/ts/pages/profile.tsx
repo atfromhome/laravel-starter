@@ -7,9 +7,9 @@ type PageProps = {
   user: UseUserReturn;
 };
 
-const Page = ({ user, ...props }: PageProps) => {
+const Page = ({ user }: PageProps) => {
   return (
-    <AppPage settingPage title="Profile">
+    <AppPage title="Profile">
       <Stack spacing="6" divider={<StackDivider borderColor="primary.100" />}>
         <SimpleGrid columns={{ base: 1, lg: 3 }} gap={{ base: "5", lg: "8" }}>
           <Box flexShrink={0}>

@@ -1,6 +1,6 @@
 import { Box, Container, HStack, Stack, Text } from "@chakra-ui/react";
 import { Head } from "@inertiajs/react";
-import React, { useMemo } from "react";
+import React from "react";
 
 export interface AppPageProps {
   title: string;
@@ -10,20 +10,13 @@ export interface AppPageProps {
 }
 
 export const AppPage = (props: AppPageProps) => {
-  const title = useMemo(() => `${props.title} - Laravel`, [props.title]);
-
   return (
     <React.Fragment>
       <Head>
-        <title>{title}</title>
+        <title>{props.title}</title>
       </Head>
-      <Box bg="stale.600" pt={{ base: "0", lg: "3" }} flex="1">
-        <Box
-          height="full"
-          bg="stale.50"
-          borderTopLeftRadius={{ base: "none", lg: "2rem" }}
-          overflowY="auto"
-        >
+      <Box pt={{ base: "0", lg: "3" }} flex="1">
+        <Box height="full" bg="white" overflowY="auto">
           <Container p="8" flex="1" maxW="7xl">
             <Stack spacing={{ base: "8", lg: "6" }}>
               <Stack

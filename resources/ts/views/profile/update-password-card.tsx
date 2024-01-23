@@ -19,10 +19,7 @@ import { useForm } from "@inertiajs/react";
 type UpdatePasswordCardProps = CardProps;
 
 export const UpdatePasswordCard = ({ ...props }: UpdatePasswordCardProps) => {
-  const toast = useToast({
-    position: "bottom-right",
-    variant: "subtle"
-  });
+  const toast = useToast();
 
   const [showPassword, handleShowPassword] = useBoolean(false);
 
@@ -35,7 +32,6 @@ export const UpdatePasswordCard = ({ ...props }: UpdatePasswordCardProps) => {
   return (
     <Card
       as={chakra.form}
-      variant="elevated"
       onSubmit={(e) => {
         e.preventDefault();
 
@@ -45,8 +41,7 @@ export const UpdatePasswordCard = ({ ...props }: UpdatePasswordCardProps) => {
             toast({
               title: "Berhasil!!",
               description: "Password login anda berhasil di ubah",
-              status: "success",
-              isClosable: true
+              status: "success"
             });
           }
         });

@@ -1,6 +1,4 @@
 import {
-  Alert,
-  AlertIcon,
   Button,
   Card,
   CardBody,
@@ -11,8 +9,6 @@ import {
   FormErrorMessage,
   FormLabel,
   Input,
-  Link,
-  Text,
   VStack,
   chakra
 } from "@chakra-ui/react";

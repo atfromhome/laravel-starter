@@ -1,7 +1,7 @@
 import { Styles } from "@chakra-ui/theme-tools";
 
 export const styles: Styles = {
-  global: (props) => ({
+  global: () => ({
     body: {
       WebkitFontSmoothing: "antialiased",
       TextRendering: "optimizelegibility"

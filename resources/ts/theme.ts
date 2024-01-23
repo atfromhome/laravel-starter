@@ -1,4 +1,4 @@
-import { extendTheme, withDefaultColorScheme } from "@chakra-ui/react";
+import { extendTheme, withDefaultColorScheme, withDefaultProps } from "@chakra-ui/react";
 import { components, foundations, styles } from "./themes";
 
 const theme = extendTheme(
@@ -7,7 +7,13 @@ const theme = extendTheme(
     styles,
     components
   },
-  withDefaultColorScheme({ colorScheme: "primary" })
+  withDefaultColorScheme({ colorScheme: "primary" }),
+  withDefaultProps({
+    defaultProps: {
+      variant: "outline"
+    },
+    components: ["Card"]
+  })
 );
 
 export default theme;

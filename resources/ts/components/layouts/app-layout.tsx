@@ -1,10 +1,4 @@
-import {
-  Box,
-  Flex,
-  FlexProps,
-  HStack,
-  useBreakpointValue,
-} from "@chakra-ui/react";
+import { Flex, FlexProps, useBreakpointValue } from "@chakra-ui/react";
 import { Sidebar } from "./sidebar";
 import { Navbar } from "./navbar";
 
@@ -20,6 +14,7 @@ export function AppLayout({ children, ...props }: AppLayoutProps) {
       direction={{ base: "column", lg: "row" }}
       height="100vh"
       overflowY="auto"
+      {...props}
     >
       {isDesktop ? <Sidebar /> : <Navbar />}
       {children}
