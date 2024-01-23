@@ -15,7 +15,7 @@
         "eslint-config-prettier": "^9.1.0",
         "eslint-plugin-prettier": "^5.1.3",
         "eslint-plugin-react": "^7.33.2",
-        "laravel-vite-plugin": "^0.8.1",
+        "laravel-vite-plugin": "^1.0.1",
         "prettier": "3.0.3",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
@@ -28,6 +28,6 @@
         "@emotion/styled": "^11.11.0",
         "@fontsource-variable/inter": "^5.0.16",
         "framer-motion": "^10.18.0",
-        "lucide-react": "^0.309.0"
+        "lucide-react": "^0.314.0"
     }
 }
