@@ -25,7 +25,7 @@ final class NavigationManager
     {
         $groups = \collect($this->getNavigationGroups())
             ->sortBy(fn (NavigationGroup $group): int => $group->getSort())
-            ->groupBy(fn (NavigationGroup $group): string => $group->getLabel() ?? "")
+            ->groupBy(fn (NavigationGroup $group): string => $group->getLabel() ?? '')
             ->map(function (Collection $collection, string $key) {
                 return NavigationGroup::new()->label($key)->menus(
                     $collection
