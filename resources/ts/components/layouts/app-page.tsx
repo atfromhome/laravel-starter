@@ -1,23 +1,23 @@
-import { Box, Container, HStack, Stack, Text } from "@chakra-ui/react";
+import { Box, Container, HStack, LayoutProps, Stack, Text } from "@chakra-ui/react";
 import { Head } from "@inertiajs/react";
 import React from "react";
 
-export interface AppPageProps {
+export interface AppPageProps extends Pick<LayoutProps, "width"> {
   title: string;
   subtitle?: string;
   action?: React.ReactElement;
   children?: React.ReactNode;
 }
 
-export const AppPage = (props: AppPageProps) => {
+export const AppPage = ({ width = "full", ...props }: AppPageProps) => {
   return (
     <React.Fragment>
       <Head>
         <title>{props.title}</title>
       </Head>
-      <Box pt={{ base: "0", lg: "3" }} flex="1">
+      <Box flex="1">
         <Box height="full" bg="white" overflowY="auto">
-          <Container p="8" flex="1" maxW="7xl">
+          <Container p="8" flex="1" width={width} maxW="8xl">
             <Stack spacing={{ base: "8", lg: "6" }}>
               <Stack
                 spacing="4"
