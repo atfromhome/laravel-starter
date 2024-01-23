@@ -21,12 +21,15 @@ import { Head, Link, useForm } from "@inertiajs/react";
 import { Fragment, ReactNode } from "react";
 import { Logo } from "~/components";
 import { PasswordInput } from "~/components/forms";
+import { useFortifyFeature } from "~/hooks";
 
 type PageProps = {
   status?: string;
 };
 
 function Page(props: PageProps) {
+  const feature = useFortifyFeature();
+
   const form = useForm({
     email: "",
     password: "",
@@ -89,9 +92,11 @@ function Page(props: PageProps) {
                 >
                   Remember me
                 </Checkbox>
-                <Button variant="link" as={Link} href="/forgot-password">
-                  Forgot password?
-                </Button>
+                {feature.resetPasswords && (
+                  <Button variant="link" as={Link} href="/forgot-password">
+                    Forgot password?
+                  </Button>
+                )}
               </HStack>
             </VStack>
           </CardBody>
@@ -101,12 +106,14 @@ function Page(props: PageProps) {
             </Button>
           </CardFooter>
         </Card>
-        <Text color="primary.400" align="center" mt={5}>
-          Do not have an account yet?{" "}
-          <Button as={Link} href="/register" variant="link" color="primary.400">
-            Create account
-          </Button>
-        </Text>
+        {feature.registration && (
+          <Text color="primary.400" align="center" mt={5}>
+            Do not have an account yet?{" "}
+            <Button as={Link} href="/register" variant="link" color="primary.400">
+              Create account
+            </Button>
+          </Text>
+        )}
       </Container>
     </Center>
   );
