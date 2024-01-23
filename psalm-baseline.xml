@@ -1,43 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<files psalm-version="5.12.0@f90118cdeacd0088e7215e64c0c99ceca819e176">
-  <file src="src/Actions/Fortify/ResetUserPassword.php">
-    <PossiblyUnusedMethod>
-      <code>reset</code>
-    </PossiblyUnusedMethod>
-  </file>
-  <file src="src/Actions/Fortify/UpdateUserPassword.php">
-    <PossiblyUnusedMethod>
-      <code>update</code>
-    </PossiblyUnusedMethod>
-  </file>
-  <file src="src/Actions/Fortify/UpdateUserProfileInformation.php">
-    <PossiblyUnusedMethod>
-      <code>update</code>
-    </PossiblyUnusedMethod>
-  </file>
-  <file src="src/Http/Controllers/ProfileInformationController.php">
-    <PossiblyUnusedReturnValue>
-      <code>Response</code>
-    </PossiblyUnusedReturnValue>
-  </file>
-  <file src="src/Http/Middleware/RedirectIfAuthenticated.php">
-    <PossiblyUnusedMethod>
-      <code>handle</code>
-    </PossiblyUnusedMethod>
-  </file>
+<files psalm-version="5.20.0@3f284e96c9d9be6fe6b15c79416e1d1903dcfef4">
   <file src="src/Http/Responses/Fortify/ResetPasswordView.php">
     <PossiblyInvalidCast>
       <code><![CDATA[$request->route('token')]]></code>
     </PossiblyInvalidCast>
-  </file>
-  <file src="src/Providers/AppServiceProvider.php">
-    <PossiblyUnusedMethod>
-      <code>boot</code>
-    </PossiblyUnusedMethod>
-  </file>
-  <file src="src/Providers/FortifyServiceProvider.php">
-    <PossiblyUnusedMethod>
-      <code>boot</code>
-    </PossiblyUnusedMethod>
   </file>
 </files>
