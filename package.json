@@ -26,7 +26,7 @@
         "@chakra-ui/react": "^2.8.2",
         "@emotion/react": "^11.11.4",
         "@emotion/styled": "^11.11.0",
-        "@fontsource-variable/inter": "^5.0.16",
+        "@fontsource-variable/inter": "^5.0.18",
         "framer-motion": "^11.1.7",
         "lucide-react": "^0.323.0"
     }
