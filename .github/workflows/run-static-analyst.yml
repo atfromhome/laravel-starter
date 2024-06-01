@@ -1,4 +1,4 @@
-name: Running psalm
+name: Running PHPStan
 
 on:
   push:
@@ -8,8 +8,8 @@ on:
       - 'phpstan-baseline.neon'
 
 jobs:
-  psalm:
-    name: Psalm
+  phpstan:
+    name: PHPStan
     runs-on: ubuntu-latest
 
     steps:
