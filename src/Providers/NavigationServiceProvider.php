@@ -23,25 +23,8 @@ final class NavigationServiceProvider extends ServiceProvider
         Navigation::registerNavigation([
             NavigationItem::new()
                 ->label('Home')
-                ->href('/')
+                ->href('/hub')
                 ->icon('layout-dashboard'),
-            NavigationItem::new()
-                ->label('Error Pages')
-                ->icon('exclamation-circle')
-                ->subs([
-                    NavigationItem::new()
-                        ->label('Not Found')
-                        ->href('/errors/404')
-                        ->icon('error-404'),
-                    NavigationItem::new()
-                        ->label('Internal Server Error')
-                        ->href('/errors/500')
-                        ->icon('server-off'),
-                    NavigationItem::new()
-                        ->label('Maintenance Error')
-                        ->href('/errors/503')
-                        ->icon('barrier-block'),
-                ]),
         ]);
     }
 }
