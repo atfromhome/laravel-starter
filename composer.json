@@ -1,8 +1,8 @@
 {
     "name": "fromhome/laravel-starter",
     "type": "project",
-    "description": "Laravel project starter with Chakra UI, InertiaJS and Laravel Fortify.",
-    "keywords": ["laravel"],
+    "description": "Laravel project starter with Shadcn UI, InertiaJS and Laravel Fortify.",
+    "keywords": ["laravel", "shadcn-ui"],
     "license": "MIT",
     "require": {
         "php": "^8.2",
