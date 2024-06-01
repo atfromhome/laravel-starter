@@ -1,12 +1,9 @@
 import { usePage } from "@inertiajs/react";
 
-export type UseUserReturn = {
-  id: number;
-  name: string;
-  email: string;
-};
-export const useUser = (): UseUserReturn | null => {
+export type UseUserReturn = null | Pick<App.Models.User, "id" | "name" | "email">;
+
+export const useUser = (): UseUserReturn => {
   const props = usePage().props as any;
 
-  return props.auth?.user as any;
+  return props.auth?.user as UseUserReturn;
 };

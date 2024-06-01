@@ -4,17 +4,17 @@ declare(strict_types=1);
 
 namespace Database\Seeders;
 
+use App\Models\User;
+// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Database\Factories\UserFactory;
 
 final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-        UserFactory::new([
-            'name' => 'Administrator',
-            'email' => 'admin@fromhome.dev',
-            'is_super_admin' => true,
-        ])->createOne();
+        User::factory()->create([
+            'name' => 'Test User',
+            'email' => 'test@example.com',
+        ]);
     }
 }

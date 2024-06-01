@@ -4,62 +4,72 @@ declare(strict_types=1);
 
 namespace App\Navigation;
 
-use App\Models\User;
-use Illuminate\Support\Collection;
+use Illuminate\Database\Eloquent\Model;
 
 final class NavigationManager
 {
-    private array $navigationGroups = [];
+    /**
+     * @var NavigationItem[]
+     */
+    private array $navigationItems = [];
 
-    public function registerNavigationGroups(array $groups): void
+    /**
+     * @param  NavigationItem[]  $items
+     */
+    public function registerNavigationGroups(array $items): void
     {
-        $this->navigationGroups = \array_merge($this->navigationGroups, $groups);
+        $this->navigationItems = \array_merge($this->navigationItems, $items);
     }
 
-    public function getNavigationGroups(): array
+    /**
+     * @return NavigationItem[]
+     */
+    public function getNavigationItems(): array
     {
-        return $this->navigationGroups;
+        return $this->navigationItems;
     }
 
-    public function getUserNavigationGroups(User $user): array
+    /**
+     * @return array<array-key, null|string|array<array-key, null|string>>
+     */
+    public function getUserNavigationItems(Model $user): array
     {
-        $groups = \collect($this->getNavigationGroups())
-            ->sortBy(fn (NavigationGroup $group): int => $group->getSort())
-            ->groupBy(fn (NavigationGroup $group): string => $group->getLabel() ?? '')
-            ->map(function (Collection $collection, string $key) {
-                return NavigationGroup::new()->label($key)->menus(
-                    $collection
-                        ->map(fn (NavigationGroup $group) => $group->getMenus())
-                        ->flatten()
-                        ->unique(fn (NavigationItem $item) => $item->getHref())
-                        ->all()
-                );
-            });
+        $navigations = \collect($this->getNavigationItems())->sortBy(fn (NavigationItem $item): int => $item->getSort());
 
-        if ($user->getAttribute('is_super_admin')) {
-            return $groups->values()->all();
+        if ($user->hasAttribute('is_super_admin') && $user->getAttribute('is_super_admin')) {
+            /** @var array<array-key, null|string|array<array-key, null|string>> */
+            return $navigations->values()->toArray();
         }
 
-        return \collect($groups)
-            ->map(function (NavigationGroup $group) use ($user): NavigationGroup {
-                $menus = \array_filter($group->getMenus(), static function (NavigationItem $item) use ($user): bool {
-                    if ($item->getPermission() === null) {
-                        return true;
-                    }
+        /** @var array<array-key, null|string|array<array-key, null|string>> */
+        return $navigations->filter(function (NavigationItem $item) use ($user): bool {
+            return $this->checkNavigationPermission($item, $user);
+        })->map(function (NavigationItem $item) use ($user): NavigationItem {
+            $subs = collect($item->getSubs());
 
-                    if (\method_exists($user, 'checkPermissionTo')) {
-                        return $user->checkPermissionTo($item->getPermission());
-                    }
+            if ($subs->isEmpty()) {
+                return $item;
+            }
 
-                    return true;
-                });
+            $navigations = $subs->sortBy(fn (NavigationItem $item): int => $item->getSort())
+                ->filter(fn (NavigationItem $item): bool => $this->checkNavigationPermission($item, $user))
+                ->values()
+                ->all();
 
-                return $group->menus(
-                    \array_values($menus)
-                );
-            })
-            ->reject(fn (NavigationGroup $group) => \count($group->getMenus()) <= 0)
-            ->values()
-            ->all();
+            return $item->subs($navigations);
+        })->values()->toArray();
+    }
+
+    private function checkNavigationPermission(NavigationItem $item, Model $user): bool
+    {
+        if ($item->getPermission() === null) {
+            return true;
+        }
+
+        if (\method_exists($user, 'checkPermissionTo')) {
+            return $user->checkPermissionTo($item->getPermission());
+        }
+
+        return true;
     }
 }

@@ -1,45 +1,9 @@
-import { Box, GridItem, SimpleGrid, Stack, StackDivider, Text } from "@chakra-ui/react";
-import { AppPage } from "~/components";
-import { UseUserReturn } from "~/hooks";
-import { PersonalInfoCard, UpdatePasswordCard } from "~/views";
+import { Fragment, ReactNode } from "react";
 
-type PageProps = {
-  user: UseUserReturn;
-};
+function Page() {
+  return null;
+}
 
-const Page = ({ user }: PageProps) => {
-  return (
-    <AppPage title="Profile">
-      <Stack spacing="6" divider={<StackDivider borderColor="primary.100" />}>
-        <SimpleGrid columns={{ base: 1, lg: 3 }} gap={{ base: "5", lg: "8" }}>
-          <Box flexShrink={0}>
-            <Text fontSize="lg" fontWeight="medium">
-              Personal Information
-            </Text>
-            <Text color="muted" fontSize="sm">
-              Update your account profile information and email address
-            </Text>
-          </Box>
-          <GridItem colSpan={2}>
-            <PersonalInfoCard user={user as UseUserReturn} maxW={{ lg: "full" }} />
-          </GridItem>
-        </SimpleGrid>
-        <SimpleGrid columns={{ base: 1, lg: 3 }} gap={{ base: "5", lg: "8" }}>
-          <Box flexShrink={0}>
-            <Text fontSize="lg" fontWeight="medium">
-              Update Password
-            </Text>
-            <Text color="muted" fontSize="sm">
-              Ensure your account is using a long, random password to stay secure
-            </Text>
-          </Box>
-          <GridItem colSpan={2}>
-            <UpdatePasswordCard maxW={{ lg: "full" }} />
-          </GridItem>
-        </SimpleGrid>
-      </Stack>
-    </AppPage>
-  );
-};
+Page.layout = (page: ReactNode) => <Fragment>{page}</Fragment>;
 
 export default Page;

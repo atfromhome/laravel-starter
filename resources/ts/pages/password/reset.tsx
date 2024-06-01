@@ -1,99 +1,48 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Center,
-  Container,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  VStack,
-  chakra
-} from "@chakra-ui/react";
-import { Head, useForm } from "@inertiajs/react";
-import { Logo } from "~/components";
-import { PasswordInput } from "~/components/forms";
+import { RocketIcon } from "@radix-ui/react-icons";
+import { Fragment, ReactNode } from "react";
+import { Logo } from "~/components/logo";
+import { Alert, AlertTitle, AlertDescription } from "~/components/ui/alert";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
+import { ResetPassword } from "./components/reset-form";
 
-type PageProps = {
-  email: string;
+type Props = {
   token: string;
-  status?: string;
-  [key: string]: unknown;
+  email: string | undefined;
+  status: string | undefined;
 };
 
-export default function Page(props: PageProps) {
-  const form = useForm({
-    email: props.email || "",
-    token: props.token || "",
-    password: "",
-    password_confirmation: ""
-  });
-
+function Page(props: Props) {
   return (
-    <Center minH="100vh">
-      <Head>
-        <title>Reset Password</title>
-      </Head>
-
-      <Container>
-        <Center pb={8}>
-          <Logo h={14} />
-        </Center>
-        <Card
-          as={chakra.form}
-          variant="elevated"
-          onSubmit={(e) => {
-            e.preventDefault();
-
-            form.post("/reset-password");
-          }}
-        >
-          <CardBody>
-            <VStack align="stretch" spacing={4}>
-              <FormControl isRequired isInvalid={Boolean(form.errors.email)}>
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <Input
-                  type="email"
-                  id="email"
-                  placeholder="you@example.com"
-                  autoComplete="off"
-                  value={form.data.email}
-                  onChange={(e) => form.setData("email", e.target.value)}
-                />
-                <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-              </FormControl>
-              <FormControl isRequired isInvalid={Boolean(form.errors.password)}>
-                <FormLabel htmlFor="password">New Password</FormLabel>
-                <PasswordInput
-                  id="password"
-                  placeholder="Your new password"
-                  value={form.data.password}
-                  onChange={(e) => form.setData("password", e.target.value)}
-                />
-                <FormErrorMessage>{form.errors.password}</FormErrorMessage>
-              </FormControl>
-              <FormControl isRequired isInvalid={Boolean(form.errors.password_confirmation)}>
-                <FormLabel htmlFor="password_confirmation">Confirm New Password</FormLabel>
-                <PasswordInput
-                  id="password_confirmation"
-                  placeholder="Confirm your new password"
-                  value={form.data.password_confirmation}
-                  onChange={(e) => form.setData("password_confirmation", e.target.value)}
-                />
-                <FormErrorMessage>{form.errors.password_confirmation}</FormErrorMessage>
-              </FormControl>
-              <chakra.input type="hidden" value={form.data.token} />
-            </VStack>
-          </CardBody>
-          <CardFooter>
-            <Button w="full" type="submit" isLoading={form.processing}>
-              Reset Password
-            </Button>
-          </CardFooter>
+    <div className="container grid h-svh flex-col items-center justify-center bg-primary-foreground lg:max-w-none lg:px-0">
+      <div className="mx-auto flex w-full flex-col justify-center space-y-2 sm:w-[480px] lg:p-8">
+        <Card className="mx-auto lg:w-full max-w-md">
+          <CardHeader>
+            <CardTitle className="text-2xl">Ubah Password</CardTitle>
+            <CardDescription>
+              Masukan password baru Anda di bawah ini untuk mengatur ulang kata sandi.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-6">
+              {props.status && (
+                <Alert>
+                  <RocketIcon className="h-4 w-4" />
+                  <AlertTitle>Heads up!</AlertTitle>
+                  <AlertDescription>{props.status}</AlertDescription>
+                </Alert>
+              )}
+              <ResetPassword />
+            </div>
+          </CardContent>
         </Card>
-      </Container>
-    </Center>
+        <div className="pt-2 flex items-center justify-center">
+          <Logo className="w-24" />
+        </div>
+      </div>
+    </div>
   );
 }
+
+Page.layout = (page: ReactNode) => <Fragment>{page}</Fragment>;
+
+export default Page;

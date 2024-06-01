@@ -1,86 +1,47 @@
-import {
-  Alert,
-  AlertIcon,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Center,
-  Container,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  Text,
-  VStack,
-  chakra
-} from "@chakra-ui/react";
-import { Head, useForm } from "@inertiajs/react";
-import { Logo } from "~/components";
+import { Fragment, ReactNode } from "react";
+import { Logo } from "~/components/logo";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
+import { ForgotPassword } from "./components/forgot-form";
+import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
+import { RocketIcon } from "@radix-ui/react-icons";
 
-type PageProps = {
-  status?: string;
+type Props = {
+  status?: string | undefined;
 };
 
-export default function Page(props: PageProps) {
-  const form = useForm({
-    email: ""
-  });
-
+function Page(props: Props) {
   return (
-    <Center minH="100vh">
-      <Head>
-        <title>Forgot Password</title>
-      </Head>
-
-      <Container>
-        <Center pb={8}>
-          <Logo h={14} />
-        </Center>
-        <Card
-          as={chakra.form}
-          variant="elevated"
-          onSubmit={(e) => {
-            e.preventDefault();
-
-            form.post("/forgot-password");
-          }}
-        >
-          <CardBody>
-            <VStack align="stretch" spacing={4}>
-              <Text>
-                Forgot your password? No problem. Just let us know your email address and we will
-                email you a password reset link that will allow you to choose a new one.
-              </Text>
-
+    <div className="container grid h-svh flex-col items-center justify-center bg-primary-foreground lg:max-w-none lg:px-0">
+      <div className="mx-auto flex w-full flex-col justify-center space-y-2 sm:w-[480px] lg:p-8">
+        <Card className="mx-auto lg:w-full max-w-md">
+          <CardHeader>
+            <CardTitle className="text-2xl">Lupa Password</CardTitle>
+            <CardDescription>
+              Masukkan email Anda yang terdaftar dan kami akan mengirimkan tautan untuk mengatur
+              ulang kata sandi.
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-6">
               {props.status && (
-                <Alert rounded="md">
-                  <AlertIcon />
-                  {props.status}
+                <Alert>
+                  <RocketIcon className="h-4 w-4" />
+                  <AlertTitle>Heads up!</AlertTitle>
+                  <AlertDescription>{props.status}</AlertDescription>
                 </Alert>
               )}
-
-              <FormControl isRequired isInvalid={Boolean(form.errors.email)}>
-                <FormLabel htmlFor="email">Email</FormLabel>
-                <Input
-                  type="email"
-                  id="email"
-                  placeholder="you@example.com"
-                  autoComplete="off"
-                  value={form.data.email}
-                  onChange={(e) => form.setData("email", e.target.value)}
-                />
-                <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-              </FormControl>
-            </VStack>
-          </CardBody>
-          <CardFooter>
-            <Button w="full" type="submit" isLoading={form.processing}>
-              Email Password Reset Link
-            </Button>
-          </CardFooter>
+              <ForgotPassword />
+            </div>
+          </CardContent>
         </Card>
-      </Container>
-    </Center>
+        <div className="pt-2 flex items-center justify-center">
+          <Logo className="w-24" />
+        </div>
+      </div>
+    </div>
   );
 }
+
+Page.layout = (page: ReactNode) => <Fragment>{page}</Fragment>;
+
+export default Page;

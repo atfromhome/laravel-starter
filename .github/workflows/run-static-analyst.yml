@@ -1,0 +1,30 @@
+name: Running psalm
+
+on:
+  push:
+    paths:
+      - '**.php'
+      - 'phpstan.neon'
+      - 'phpstan-baseline.neon'
+
+jobs:
+  psalm:
+    name: Psalm
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          coverage: none
+
+      - name: Install composer dependencies
+        uses: ramsey/composer-install@v3
+
+      - name: Run Psalm
+        run: ./vendor/bin/phpstan --error-format=github
