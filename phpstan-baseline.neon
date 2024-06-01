@@ -16,6 +16,6 @@ parameters:
 			path: src/Http/Responses/Fortify/ResetPasswordView.php
 
 		-
-			message: "#^Method App\\\\Navigation\\\\Navigation\\:\\:getUserNavigationItems\\(\\) should return array\\<App\\\\Navigation\\\\NavigationItem\\> but returns array\\<array\\<string\\>\\|string\\>\\.$#"
+			message: "#^Method App\\\\Navigation\\\\Navigation\\:\\:getUserNavigationItems\\(\\) should return array\\<App\\\\Navigation\\\\NavigationItem\\> but returns array\\<array\\<string\\|null\\>\\|string\\|null\\>\\.$#"
 			count: 1
 			path: src/Navigation/Navigation.php
