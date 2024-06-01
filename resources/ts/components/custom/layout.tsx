@@ -1,7 +1,9 @@
 import * as React from "react";
 import { cn } from "~/lib/utils";
+import ThemeSwitch from "~/components/theme-switch";
+import { UserNav } from "~/components/user-nav";
 
-interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LayoutProps extends React.HTMLAttributes<HTMLDivElement> {
   fadedBelow?: boolean;
   fixedHeight?: boolean;
 }
@@ -24,7 +26,9 @@ const Layout = React.forwardRef<HTMLDivElement, LayoutProps>(
 
 Layout.displayName = "Layout";
 
-const LayoutHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+export interface LayoutHeaderProps extends React.HTMLAttributes<HTMLDivElement> {}
+
+const LayoutHeader = React.forwardRef<HTMLDivElement, LayoutHeaderProps>(
   ({ className, ...props }, ref) => (
     <div
       ref={ref}
@@ -39,7 +43,7 @@ const LayoutHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLD
 
 LayoutHeader.displayName = "LayoutHeader";
 
-interface LayoutBodyProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface LayoutBodyProps extends React.HTMLAttributes<HTMLDivElement> {
   fixedHeight?: boolean;
 }
 
@@ -59,4 +63,17 @@ const LayoutBody = React.forwardRef<HTMLDivElement, LayoutBodyProps>(
 
 LayoutBody.displayName = "LayoutBody";
 
-export { Layout, LayoutHeader, LayoutBody };
+const UserLayoutHeader = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivElement>>(
+  ({ className, ...props }, ref) => (
+    <LayoutHeader>
+      <div className="ml-auto flex items-center space-x-4">
+        <ThemeSwitch />
+        <UserNav />
+      </div>
+    </LayoutHeader>
+  )
+);
+
+UserLayoutHeader.displayName = "UserLayoutHeader";
+
+export { Layout, LayoutHeader, LayoutBody, UserLayoutHeader };

@@ -11,9 +11,11 @@ import {
 } from "~/components/ui/dropdown-menu";
 import { useUser } from "~/hooks/use-user";
 import { Link, router } from "@inertiajs/react";
+import { useFortifyFeature } from "~/hooks/use-fortify";
 
 export function UserNav() {
   const user = useUser();
+  const feature = useFortifyFeature();
 
   return (
     <DropdownMenu>
@@ -34,12 +36,11 @@ export function UserNav() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <Link href="/profile">
-            <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
-          </Link>
-          <Link href="/settings">
-            <DropdownMenuItem className="cursor-pointer">Settings</DropdownMenuItem>
-          </Link>
+          {feature.updateProfileInformation && (
+            <Link href={route("profile.show")}>
+              <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
+            </Link>
+          )}
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem

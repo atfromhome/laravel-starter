@@ -16,7 +16,7 @@ Route::prefix('/')->group(static function (Router $router): void {
         $router->get('/hub', [HomeController::class, 'index']);
 
         if (Features::enabled(Features::updateProfileInformation())) {
-            $router->get('/profile', [ProfileInformationController::class, 'show']);
+            $router->get('/profile', [ProfileInformationController::class, 'show'])->name('profile.show');
         }
     });
 });

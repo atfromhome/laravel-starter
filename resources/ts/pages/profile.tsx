@@ -1,9 +1,10 @@
-import { Fragment, ReactNode } from "react";
+import { PageContent } from "~/components/custom/page-content";
+import ComingSoon from "~/components/coming-soon";
 
-function Page() {
-  return null;
+export default function Page() {
+  return (
+    <PageContent>
+      <ComingSoon />
+    </PageContent>
+  );
 }
-
-Page.layout = (page: ReactNode) => <Fragment>{page}</Fragment>;
-
-export default Page;
