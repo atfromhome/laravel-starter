@@ -1,15 +1,17 @@
 import { Fragment, ReactNode } from "react";
-import { Logo } from "~/components/logo";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "~/components/ui/card";
 import { ForgotPassword } from "./components/forgot-form";
 import { Alert, AlertDescription, AlertTitle } from "~/components/ui/alert";
 import { RocketIcon } from "@radix-ui/react-icons";
+import { useTheme } from "~/components/theme-provider";
 
 type Props = {
   status?: string | undefined;
 };
 
 function Page(props: Props) {
+  const theme = useTheme();
+
   return (
     <div className="container grid h-svh flex-col items-center justify-center bg-primary-foreground lg:max-w-none lg:px-0">
       <div className="mx-auto flex w-full flex-col justify-center space-y-2 sm:w-[480px] lg:p-8">
@@ -35,7 +37,11 @@ function Page(props: Props) {
           </CardContent>
         </Card>
         <div className="pt-2 flex items-center justify-center">
-          <Logo className="w-24" />
+          <img
+            alt="Logo"
+            src={theme.theme === "light" ? "/logo.svg" : "/logo.light.svg"}
+            className="w-24"
+          />
         </div>
       </div>
     </div>

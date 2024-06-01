@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import React from "react";
 import AppShell from "./components/app-shell";
+import { ThemeProvider } from "~/components/theme-provider";
 
 const appName = window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 
@@ -25,7 +26,9 @@ createInertiaApp({
   setup({ el, App, props }) {
     createRoot(el).render(
       <React.StrictMode>
-        <App {...props} />
+        <ThemeProvider defaultTheme="system" storageKey="fromhome-theme">
+          <App {...props} />
+        </ThemeProvider>
       </React.StrictMode>
     );
   }

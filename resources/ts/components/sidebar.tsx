@@ -4,8 +4,8 @@ import { Layout, LayoutHeader } from "./custom/layout";
 import { Button } from "./custom/button";
 import Nav from "./nav";
 import { cn } from "~/lib/utils";
-import { CooperaIcon, CooperaLabel } from "./logo";
 import useNavigation from "~/hooks/use-navigation";
+import { useTheme } from "~/components/theme-provider";
 
 interface SidebarProps extends HTMLAttributes<HTMLElement> {
   isCollapsed: boolean;
@@ -13,6 +13,7 @@ interface SidebarProps extends HTMLAttributes<HTMLElement> {
 }
 
 export default function Sidebar2({ className, isCollapsed, setIsCollapsed }: SidebarProps) {
+  const theme = useTheme();
   const navigations = useNavigation();
 
   const [navOpened, setNavOpened] = useState(false);
@@ -42,10 +43,20 @@ export default function Sidebar2({ className, isCollapsed, setIsCollapsed }: Sid
       <Layout>
         {/* Header */}
         <LayoutHeader className="sticky top-0 justify-between px-4 py-3 shadow md:px-4">
-          <div className="flex items-center justify-start w-full ">
-            <div className="flex items-end gap-2">
-              <CooperaIcon className="w-7" />
-              {!isCollapsed && <CooperaLabel className="h-6" />}
+          <div className="flex items-center justify-center w-full ">
+            <div className="flex items-center gap-3">
+              <img
+                alt="Logo"
+                src={theme.theme === "light" ? "/logomark.dark.svg" : "/logomark.light.svg"}
+                className="h-10"
+              />
+              {!isCollapsed && (
+                <img
+                  alt="Logo"
+                  src={theme.theme === "light" ? "/logotype.dark.svg" : "/logotype.light.svg"}
+                  className="h-6"
+                />
+              )}
             </div>
           </div>
 
