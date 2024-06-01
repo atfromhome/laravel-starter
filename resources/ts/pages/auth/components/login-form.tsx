@@ -3,6 +3,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import type { FormData } from "~/components/form";
 import { Button } from "~/components/custom/button";
 import { Input } from "~/components/ui/input";
+import { useFortifyFeature } from "~/hooks/use-fortify";
 
 interface LoginFormData extends FormData {
   email: string;
@@ -11,6 +12,7 @@ interface LoginFormData extends FormData {
 }
 
 const LoginForm = () => {
+  const feature = useFortifyFeature();
   const form = useForm<LoginFormData>({
     email: "",
     password: "",
@@ -51,13 +53,15 @@ const LoginForm = () => {
               <FormLabel htmlFor="password" invalid={invalid}>
                 Password
               </FormLabel>
-              <Link
-                href="/forgot-password"
-                className="ml-auto inline-block text-sm text-muted-foreground hover:opacity-75"
-                tabIndex={-1}
-              >
-                Forgot your password?
-              </Link>
+              {feature.resetPasswords && (
+                <Link
+                  href={route("password.request")}
+                  className="ml-auto inline-block text-sm text-muted-foreground hover:opacity-75"
+                  tabIndex={-1}
+                >
+                  Forgot your password?
+                </Link>
+              )}
             </div>
             <FormControl>
               <Input {...field} type="password" placeholder="********" required />
