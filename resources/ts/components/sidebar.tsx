@@ -42,8 +42,8 @@ export default function Sidebar2({ className, isCollapsed, setIsCollapsed }: Sid
 
       <Layout>
         {/* Header */}
-        <LayoutHeader className="sticky top-0 justify-between px-4 py-3 shadow md:px-4">
-          <div className="flex items-center justify-center w-full ">
+        <LayoutHeader className="sticky top-0 justify-between px-4 py-3 md:px-4">
+          <div className="flex items-center justify-center w-full">
             <div className="flex items-center gap-3">
               <img
                 alt="Logo"

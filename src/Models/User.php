@@ -27,6 +27,7 @@ final class User extends Auth\User
     {
         return [
             'email_verified_at' => 'datetime',
+            'password' => 'hashed',
         ];
     }
 }

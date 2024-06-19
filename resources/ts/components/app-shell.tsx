@@ -9,6 +9,7 @@ export default function AppShell({
   ...props
 }: React.HTMLAttributes<HTMLDivElement>) {
   const [isCollapsed, setIsCollapsed] = useIsCollapsed();
+
   return (
     <div className={cn("relative h-full overflow-hidden bg-background", className)} {...props}>
       <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />

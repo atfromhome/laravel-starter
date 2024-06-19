@@ -37,8 +37,8 @@ export function UserNav() {
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
           {feature.updateProfileInformation && (
-            <Link href={route("profile.show")}>
-              <DropdownMenuItem className="cursor-pointer">Profile</DropdownMenuItem>
+            <Link href={route("user-profile-information.show")}>
+              <DropdownMenuItem className="cursor-pointer">Akun saya</DropdownMenuItem>
             </Link>
           )}
         </DropdownMenuGroup>
@@ -51,7 +51,7 @@ export function UserNav() {
             router.post(route("logout"));
           }}
         >
-          Log out
+          Keluar
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

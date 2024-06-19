@@ -4,6 +4,7 @@ import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import React from "react";
 import AppShell from "./components/app-shell";
 import { ThemeProvider } from "~/components/theme-provider";
+import { Toaster } from "./components/ui/toaster";
 
 const appName = window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 
@@ -28,6 +29,7 @@ createInertiaApp({
       <React.StrictMode>
         <ThemeProvider defaultTheme="system" storageKey="fromhome-theme">
           <App {...props} />
+          <Toaster />
         </ThemeProvider>
       </React.StrictMode>
     );

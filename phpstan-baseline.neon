@@ -1,6 +1,36 @@
 parameters:
 	ignoreErrors:
 		-
+			message: "#^Cannot call method getAuthIdentifier\\(\\) on App\\\\Models\\\\User\\|null\\.$#"
+			count: 1
+			path: src/Actions/Fortify/DeleteOtherBrowserSession.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of static method Illuminate\\\\Database\\\\DatabaseManager\\:\\:connection\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Actions/Fortify/DeleteOtherBrowserSession.php
+
+		-
+			message: "#^Parameter \\#1 \\$table of method Illuminate\\\\Database\\\\Connection\\:\\:table\\(\\) expects Closure\\|Illuminate\\\\Contracts\\\\Database\\\\Query\\\\Expression\\|Illuminate\\\\Database\\\\Query\\\\Builder\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Actions/Fortify/DeleteOtherBrowserSession.php
+
+		-
+			message: "#^Method App\\\\Actions\\\\Fortify\\\\GetUserBrowserSession\\:\\:handle\\(\\) return type with generic class Illuminate\\\\Support\\\\Collection does not specify its types\\: TKey, TValue$#"
+			count: 1
+			path: src/Actions/Fortify/GetUserBrowserSession.php
+
+		-
+			message: "#^Parameter \\#1 \\$name of static method Illuminate\\\\Database\\\\DatabaseManager\\:\\:connection\\(\\) expects string\\|null, mixed given\\.$#"
+			count: 1
+			path: src/Actions/Fortify/GetUserBrowserSession.php
+
+		-
+			message: "#^Parameter \\#1 \\$table of method Illuminate\\\\Database\\\\Connection\\:\\:table\\(\\) expects Closure\\|Illuminate\\\\Contracts\\\\Database\\\\Query\\\\Expression\\|Illuminate\\\\Database\\\\Query\\\\Builder\\|string, mixed given\\.$#"
+			count: 1
+			path: src/Actions/Fortify/GetUserBrowserSession.php
+
+		-
 			message: "#^Instanceof between App\\\\Models\\\\User and Illuminate\\\\Contracts\\\\Auth\\\\MustVerifyEmail will always evaluate to false\\.$#"
 			count: 1
 			path: src/Actions/Fortify/UpdateUserProfileInformation.php

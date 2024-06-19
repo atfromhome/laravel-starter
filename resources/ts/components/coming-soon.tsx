@@ -1,8 +1,12 @@
 import { IconPlanet } from "@tabler/icons-react";
+import { HTMLAttributes } from "react";
+import { cn } from "~/lib/utils";
 
-export default function ComingSoon() {
+type ComingSoonProps = HTMLAttributes<HTMLDivElement>;
+
+export default function ComingSoon({ ...props }: ComingSoonProps) {
   return (
-    <div className="h-screen">
+    <div {...props}>
       <div className="m-auto flex h-full w-full flex-col items-center justify-center gap-2">
         <IconPlanet size={72} />
         <h1 className="text-4xl font-bold leading-tight">Coming Soon 👀</h1>

@@ -3,8 +3,8 @@ import ComingSoon from "~/components/coming-soon";
 
 export default function Page() {
   return (
-    <PageContent>
-      <ComingSoon />
+    <PageContent title="Dashboard">
+      <ComingSoon className="h-screen" />
     </PageContent>
   );
 }

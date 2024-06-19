@@ -3,18 +3,19 @@ import * as React from "react";
 import { ReactNode } from "react";
 import ThemeSwitch from "~/components/theme-switch";
 import { UserNav } from "~/components/user-nav";
-import { cn } from "~/lib/utils";
 
 export type PageContentProps = {
   header?: ReactNode | undefined;
+  title?: string | undefined;
   children?: ReactNode | undefined;
 };
 
-export function PageContent(props: PageContentProps) {
+export function PageContent({ header, title, children, ...props }: PageContentProps) {
   return (
     <Layout fadedBelow fixedHeight>
-      {!props.header && (
-        <LayoutHeader>
+      {!header && (
+        <LayoutHeader className="border-b-2 border-b-muted">
+          {title && <h1 className="font-semibold">{title}</h1>}
           <div className="ml-auto flex items-center space-x-4" {...props}>
             <ThemeSwitch />
             <UserNav />
@@ -22,7 +23,7 @@ export function PageContent(props: PageContentProps) {
         </LayoutHeader>
       )}
       <LayoutBody className="flex flex-col" fixedHeight>
-        {props.children}
+        {children}
       </LayoutBody>
     </Layout>
   );
