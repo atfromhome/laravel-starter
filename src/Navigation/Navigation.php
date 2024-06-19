@@ -8,7 +8,10 @@ use App\Models\User;
 
 final class Navigation
 {
-    public static function registerNavigationGroups(array $groups): void
+    /**
+     * @param  array<NavigationItem>  $groups
+     */
+    public static function registerNavigation(array $groups): void
     {
         /** @var NavigationManager $manager */
         $manager = app(NavigationManager::class);
@@ -16,15 +19,21 @@ final class Navigation
         $manager->registerNavigationGroups($groups);
     }
 
-    public static function getNavigationGroups(): array
+    /**
+     * @return array<NavigationItem>
+     */
+    public static function getNavigationItems(): array
     {
         /** @var NavigationManager $manager */
         $manager = app(NavigationManager::class);
 
-        return $manager->getNavigationGroups();
+        return $manager->getNavigationItems();
     }
 
-    public static function getUserNavigationGroups(?User $user = null): array
+    /**
+     * @return array<NavigationItem>
+     */
+    public static function getUserNavigationItems(?User $user = null): array
     {
         if ($user === null) {
             return [];
@@ -33,6 +42,6 @@ final class Navigation
         /** @var NavigationManager $manager */
         $manager = app(NavigationManager::class);
 
-        return $manager->getUserNavigationGroups($user);
+        return $manager->getUserNavigationItems($user);
     }
 }

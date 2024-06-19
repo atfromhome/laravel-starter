@@ -1,33 +1,49 @@
 {
-    "private": true,
-    "type": "module",
-    "scripts": {
-        "dev": "vite",
-        "build": "vite build"
-    },
-    "devDependencies": {
-        "@inertiajs/react": "^1.0.15",
-        "@types/react": "^18.2.64",
-        "@types/react-dom": "^18.3.0",
-        "@typescript-eslint/eslint-plugin": "^6.20.0",
-        "@typescript-eslint/parser": "^6.19.0",
-        "@vitejs/plugin-react": "^4.2.1",
-        "eslint-config-prettier": "^9.1.0",
-        "eslint-plugin-prettier": "^5.1.3",
-        "eslint-plugin-react": "^7.33.2",
-        "laravel-vite-plugin": "^1.0.1",
-        "prettier": "3.2.5",
-        "react": "^18.2.0",
-        "react-dom": "^18.3.1",
-        "typescript": "^5.4.5",
-        "vite": "^5.0.12"
-    },
-    "dependencies": {
-        "@chakra-ui/react": "^2.8.2",
-        "@emotion/react": "^11.11.4",
-        "@emotion/styled": "^11.11.0",
-        "@fontsource-variable/inter": "^5.0.18",
-        "framer-motion": "^11.1.7",
-        "lucide-react": "^0.323.0"
-    }
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "devDependencies": {
+    "@eslint/compat": "^1.0.3",
+    "@eslint/js": "^9.4.0",
+    "@inertiajs/react": "^1.0.16",
+    "@types/react": "^18.2.64",
+    "@types/react-dom": "^18.3.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^9.4.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.2",
+    "globals": "^15.3.0",
+    "laravel-vite-plugin": "^1.0.2",
+    "prettier": "3.2.5",
+    "react": "^18.2.0",
+    "react-dom": "^18.3.1",
+    "typescript": "^5.4.5",
+    "typescript-eslint": "^7.11.0",
+    "vite": "^5.2.11"
+  },
+  "dependencies": {
+    "@radix-ui/react-alert-dialog": "^1.0.5",
+    "@radix-ui/react-avatar": "^1.0.4",
+    "@radix-ui/react-collapsible": "^1.0.3",
+    "@radix-ui/react-dropdown-menu": "^2.0.6",
+    "@radix-ui/react-icons": "^1.3.0",
+    "@radix-ui/react-label": "^2.0.2",
+    "@radix-ui/react-select": "^2.0.0",
+    "@radix-ui/react-separator": "^1.0.3",
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-toast": "^1.1.5",
+    "@radix-ui/react-tooltip": "^1.0.7",
+    "@tabler/icons-react": "^3.4.0",
+    "autoprefixer": "^10.4.19",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
+    "postcss": "^8.4.38",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss": "^3.4.3",
+    "tailwindcss-animate": "^1.0.7"
+  }
 }

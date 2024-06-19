@@ -11,6 +11,6 @@ final class HomeController extends Controller
 {
     public function index(): Response
     {
-        return Inertia::render('home');
+        return Inertia::render('hub/home');
     }
 }

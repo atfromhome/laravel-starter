@@ -6,7 +6,6 @@ namespace App\Providers;
 
 use App\Navigation\Navigation;
 use App\Navigation\NavigationItem;
-use App\Navigation\NavigationGroup;
 use App\Navigation\NavigationManager;
 use Illuminate\Support\ServiceProvider;
 
@@ -21,13 +20,11 @@ final class NavigationServiceProvider extends ServiceProvider
 
     private function registerNavigationGroups(): void
     {
-        Navigation::registerNavigationGroups([
-            NavigationGroup::new()->menus([
-                NavigationItem::new()
-                    ->label('Home')
-                    ->href('/')
-                    ->icon('home'),
-            ]),
+        Navigation::registerNavigation([
+            NavigationItem::new()
+                ->label('Home')
+                ->href('/hub')
+                ->icon('layout-dashboard'),
         ]);
     }
 }
