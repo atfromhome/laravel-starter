@@ -2,10 +2,13 @@ name: Running PHPStan
 
 on:
   push:
+    branches: [1.x]
     paths:
       - '**.php'
       - 'phpstan.neon'
       - 'phpstan-baseline.neon'
+  pull_request:
+    branches: [1.x]
 
 jobs:
   phpstan:

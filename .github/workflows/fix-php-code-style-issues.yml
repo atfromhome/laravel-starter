@@ -2,8 +2,11 @@ name: Running pint
 
 on:
   push:
+    branches: [1.x]
     paths:
       - "**.php"
+  pull_request:
+    branches: [1.x]
 
 jobs:
   php-code-styling:
