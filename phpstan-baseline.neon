@@ -1,0 +1,101 @@
+parameters:
+	ignoreErrors:
+		-
+			message: "#^Method App\\\\Actions\\\\Fortify\\\\CreateNewUser\\:\\:create\\(\\) has parameter \\$input with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Actions/Fortify/CreateNewUser.php
+
+		-
+			message: "#^Method App\\\\Actions\\\\Fortify\\\\ResetUserPassword\\:\\:reset\\(\\) has parameter \\$input with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Actions/Fortify/ResetUserPassword.php
+
+		-
+			message: "#^Method App\\\\Actions\\\\Fortify\\\\UpdateUserPassword\\:\\:update\\(\\) has parameter \\$input with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Actions/Fortify/UpdateUserPassword.php
+
+		-
+			message: "#^Instanceof between App\\\\Models\\\\User and Illuminate\\\\Contracts\\\\Auth\\\\MustVerifyEmail will always evaluate to false\\.$#"
+			count: 1
+			path: src/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Method App\\\\Actions\\\\Fortify\\\\UpdateUserProfileInformation\\:\\:update\\(\\) has parameter \\$input with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Method App\\\\Actions\\\\Fortify\\\\UpdateUserProfileInformation\\:\\:updateVerifiedUser\\(\\) has parameter \\$input with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Result of && is always false\\.$#"
+			count: 1
+			path: src/Actions/Fortify/UpdateUserProfileInformation.php
+
+		-
+			message: "#^Method App\\\\Http\\\\Middleware\\\\HandleInertiaRequests\\:\\:share\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Http/Middleware/HandleInertiaRequests.php
+
+		-
+			message: "#^Cannot cast object\\|string\\|null to string\\.$#"
+			count: 1
+			path: src/Http/Responses/Fortify/ResetPasswordView.php
+
+		-
+			message: "#^Method App\\\\Navigation\\\\Navigation\\:\\:getNavigationGroups\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Navigation/Navigation.php
+
+		-
+			message: "#^Method App\\\\Navigation\\\\Navigation\\:\\:getUserNavigationGroups\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Navigation/Navigation.php
+
+		-
+			message: "#^Method App\\\\Navigation\\\\Navigation\\:\\:registerNavigationGroups\\(\\) has parameter \\$groups with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Navigation/Navigation.php
+
+		-
+			message: "#^Call to function method_exists\\(\\) with App\\\\Models\\\\User and 'checkPermissionTo' will always evaluate to false\\.$#"
+			count: 1
+			path: src/Navigation/NavigationManager.php
+
+		-
+			message: "#^Method App\\\\Navigation\\\\NavigationManager\\:\\:getNavigationGroups\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Navigation/NavigationManager.php
+
+		-
+			message: "#^Method App\\\\Navigation\\\\NavigationManager\\:\\:getUserNavigationGroups\\(\\) return type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Navigation/NavigationManager.php
+
+		-
+			message: "#^Method App\\\\Navigation\\\\NavigationManager\\:\\:registerNavigationGroups\\(\\) has parameter \\$groups with no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Navigation/NavigationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$callback of method Illuminate\\\\Support\\\\Collection\\<\\(int\\|string\\),mixed\\>\\:\\:map\\(\\) expects callable\\(mixed, int\\|string\\)\\: App\\\\Navigation\\\\NavigationGroup, Closure\\(App\\\\Navigation\\\\NavigationGroup\\)\\: App\\\\Navigation\\\\NavigationGroup given\\.$#"
+			count: 1
+			path: src/Navigation/NavigationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$key of method Illuminate\\\\Support\\\\Collection\\<int,mixed\\>\\:\\:unique\\(\\) expects \\(callable\\(mixed, int\\)\\: mixed\\)\\|string\\|null, Closure\\(App\\\\Navigation\\\\NavigationItem\\)\\: string given\\.$#"
+			count: 1
+			path: src/Navigation/NavigationManager.php
+
+		-
+			message: "#^Parameter \\#1 \\$menus of method App\\\\Navigation\\\\NavigationGroup\\:\\:menus\\(\\) expects array\\<App\\\\Navigation\\\\NavigationItem\\>, array\\<int, mixed\\> given\\.$#"
+			count: 1
+			path: src/Navigation/NavigationManager.php
+
+		-
+			message: "#^Property App\\\\Navigation\\\\NavigationManager\\:\\:\\$navigationGroups type has no value type specified in iterable type array\\.$#"
+			count: 1
+			path: src/Navigation/NavigationManager.php

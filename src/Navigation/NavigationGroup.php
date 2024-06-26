@@ -19,9 +19,7 @@ final class NavigationGroup implements Arrayable
 
     private int $sort = 0;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function new(): self
     {

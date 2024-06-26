@@ -2,9 +2,9 @@ name: Running phpunit
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   test:
@@ -12,8 +12,8 @@ jobs:
     strategy:
       fail-fast: true
       matrix:
-        os: [ ubuntu-latest ]
-        php: [ 8.2, 8.3 ]
+        os: [ubuntu-latest]
+        php: [8.2, 8.3]
 
     name: PHP-${{ matrix.php }} - ${{ matrix.os }}
 

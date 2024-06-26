@@ -1,15 +1,15 @@
-name: Running psalm
+name: Running PHPStan
 
 on:
   push:
     paths:
       - '**.php'
-      - 'psalm.xml'
-      - 'psalm-baseline.xml'
+      - 'phpstan.neon'
+      - 'phpstan-baseline.neon'
 
 jobs:
-  psalm:
-    name: Psalm
+  phpstan:
+    name: PHPStan
     runs-on: ubuntu-latest
 
     steps:
@@ -26,5 +26,5 @@ jobs:
       - name: Install composer dependencies
         uses: ramsey/composer-install@v3
 
-      - name: Run Psalm
-        run: ./vendor/bin/psalm --output-format=github
+      - name: Run PHPStan
+        run: ./vendor/bin/phpstan --error-format=github

@@ -7,14 +7,13 @@ namespace App\Http\Middleware;
 use Inertia\Middleware;
 use Illuminate\Http\Request;
 use App\Navigation\Navigation;
-use App\Http\PageProps\AuthUserProps;
 
 final class HandleInertiaRequests extends Middleware
 {
     public function share(Request $request): array
     {
         return \array_merge(parent::share($request), [
-            'auth.user' => fn () => AuthUserProps::load($request),
+            'auth.user' => fn () => $request->user()?->only('id', 'name', 'email'),
 
             'fortify.features' => fn () => \config('fortify.features', []),
 

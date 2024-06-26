@@ -14,11 +14,17 @@ use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
 use App\Http\Responses\Fortify\RegisterView;
+use Laravel\Fortify\Contracts\LoginResponse;
+use Laravel\Fortify\Contracts\LogoutResponse;
+use Laravel\Fortify\Contracts\RegisterResponse;
 use Laravel\Fortify\Contracts\LoginViewResponse;
 use App\Http\Responses\Fortify\ResetPasswordView;
 use Laravel\Fortify\Contracts\RegisterViewResponse;
 use App\Actions\Fortify\UpdateUserProfileInformation;
+use App\Http\Responses\Fortify\LoginRedirectResponse;
 use App\Http\Responses\Fortify\PasswordResetLinkView;
+use App\Http\Responses\Fortify\LogoutRedirectResponse;
+use App\Http\Responses\Fortify\RegisterRedirectResponse;
 use Laravel\Fortify\Contracts\ResetPasswordViewResponse;
 use Laravel\Fortify\Contracts\RequestPasswordResetLinkViewResponse;
 
@@ -39,6 +45,10 @@ final class FortifyServiceProvider extends ServiceProvider
         $this->app->singleton(RegisterViewResponse::class, RegisterView::class);
         $this->app->singleton(RequestPasswordResetLinkViewResponse::class, PasswordResetLinkView::class);
         $this->app->singleton(ResetPasswordViewResponse::class, ResetPasswordView::class);
+
+        $this->app->singleton(LoginResponse::class, LoginRedirectResponse::class);
+        $this->app->singleton(LogoutResponse::class, LogoutRedirectResponse::class);
+        $this->app->singleton(RegisterResponse::class, RegisterRedirectResponse::class);
     }
 
     private function configureActions(): void

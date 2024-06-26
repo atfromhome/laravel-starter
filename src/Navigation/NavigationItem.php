@@ -21,9 +21,7 @@ final class NavigationItem implements Arrayable
 
     private ?string $permission = null;
 
-    private function __construct()
-    {
-    }
+    private function __construct() {}
 
     public static function new(): self
     {
