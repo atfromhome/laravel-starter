@@ -9058,16 +9058,16 @@
         },
         {
             "name": "phpunit/phpunit",
-            "version": "11.2.9",
+            "version": "11.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c197bbaaca360efda351369bf1fd9cc1ca6bcbf7"
+                "reference": "a8dce73a8938dfec7ac0daa91bdbcaae7d7188a3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c197bbaaca360efda351369bf1fd9cc1ca6bcbf7",
-                "reference": "c197bbaaca360efda351369bf1fd9cc1ca6bcbf7",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a8dce73a8938dfec7ac0daa91bdbcaae7d7188a3",
+                "reference": "a8dce73a8938dfec7ac0daa91bdbcaae7d7188a3",
                 "shasum": ""
             },
             "require": {
@@ -9106,7 +9106,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-main": "11.2-dev"
+                    "dev-main": "11.3-dev"
                 }
             },
             "autoload": {
@@ -9138,7 +9138,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/phpunit/issues",
                 "security": "https://github.com/sebastianbergmann/phpunit/security/policy",
-                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.2.9"
+                "source": "https://github.com/sebastianbergmann/phpunit/tree/11.3.0"
             },
             "funding": [
                 {
@@ -9154,7 +9154,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-07-30T11:09:23+00:00"
+            "time": "2024-08-02T03:56:43+00:00"
         },
         {
             "name": "roave/security-advisories",
@@ -10128,16 +10128,16 @@
         },
         {
             "name": "sebastian/comparator",
-            "version": "6.0.1",
+            "version": "6.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "131942b86d3587291067a94f295498ab6ac79c20"
+                "reference": "450d8f237bd611c45b5acf0733ce43e6bb280f81"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/131942b86d3587291067a94f295498ab6ac79c20",
-                "reference": "131942b86d3587291067a94f295498ab6ac79c20",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/450d8f237bd611c45b5acf0733ce43e6bb280f81",
+                "reference": "450d8f237bd611c45b5acf0733ce43e6bb280f81",
                 "shasum": ""
             },
             "require": {
@@ -10193,7 +10193,7 @@
             "support": {
                 "issues": "https://github.com/sebastianbergmann/comparator/issues",
                 "security": "https://github.com/sebastianbergmann/comparator/security/policy",
-                "source": "https://github.com/sebastianbergmann/comparator/tree/6.0.1"
+                "source": "https://github.com/sebastianbergmann/comparator/tree/6.0.2"
             },
             "funding": [
                 {
@@ -10201,7 +10201,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2024-07-03T04:48:07+00:00"
+            "time": "2024-08-12T06:07:25+00:00"
         },
         {
             "name": "sebastian/complexity",
