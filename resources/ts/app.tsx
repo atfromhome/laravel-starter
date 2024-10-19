@@ -2,9 +2,10 @@ import { createInertiaApp } from "@inertiajs/react";
 import { createRoot } from "react-dom/client";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { StrictMode } from "react";
-import { ChakraProvider } from "@chakra-ui/react";
-import theme from "./theme";
-import { AppLayout } from "./components";
+// import { AppLayout } from "./components";
+import { Provider } from "./components/ui/provider";
+
+import "@fontsource-variable/inter";
 
 const appName = window.document.getElementsByTagName("title")[0]?.innerText || "Laravel";
 
@@ -18,25 +19,16 @@ createInertiaApp({
       import.meta.glob("./pages/**/*.tsx")
     );
 
-    page.default.layout = page.default.layout || ((page: any) => <AppLayout children={page} />);
+    // page.default.layout = page.default.layout || ((page: any) => <AppLayout children={page} />);
 
     return page;
   },
   setup({ el, App, props }) {
     createRoot(el).render(
       <StrictMode>
-        <ChakraProvider
-          theme={theme}
-          toastOptions={{
-            defaultOptions: {
-              position: "bottom",
-              variant: "subtle",
-              isClosable: true
-            }
-          }}
-        >
+        <Provider>
           <App {...props} />
-        </ChakraProvider>
+        </Provider>
       </StrictMode>
     );
   }

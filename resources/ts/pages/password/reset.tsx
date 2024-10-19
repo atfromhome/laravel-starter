@@ -13,6 +13,7 @@ import {
   chakra
 } from "@chakra-ui/react";
 import { Head, useForm } from "@inertiajs/react";
+import { Fragment, ReactNode } from "react";
 import { Logo } from "~/components";
 import { PasswordInput } from "~/components/forms";
 
@@ -23,7 +24,7 @@ type PageProps = {
   [key: string]: unknown;
 };
 
-export default function Page(props: PageProps) {
+function Page(props: PageProps) {
   const form = useForm({
     email: props.email || "",
     token: props.token || "",
@@ -97,3 +98,7 @@ export default function Page(props: PageProps) {
     </Center>
   );
 }
+
+Page.layout = (page: ReactNode) => <Fragment>{page}</Fragment>;
+
+export default Page;

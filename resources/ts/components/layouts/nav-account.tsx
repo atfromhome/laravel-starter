@@ -4,17 +4,15 @@ import {
   FlexProps,
   HStack,
   Icon,
-  Img,
+  Image,
   Menu,
-  MenuDivider,
   MenuItem,
-  MenuItemProps,
-  MenuList,
-  useMenuButton
+  MenuItemProps
 } from "@chakra-ui/react";
 import { InertiaLinkProps, Link, useForm } from "@inertiajs/react";
 import { ChevronsUpDown } from "lucide-react";
 import { useUser } from "~/hooks";
+import { MenuContent, MenuRoot } from "../ui/menu";
 
 export const NavAccountButton = (props: FlexProps) => {
   const user = useUser();
@@ -39,12 +37,10 @@ export const NavAccountButton = (props: FlexProps) => {
       transition="all 0.2s"
       _focus={{ shadow: "outline", boxShadow: "none" }}
     >
-      <HStack flex="1" spacing="3">
-        <Img w="8" h="8" rounded="md" objectFit="cover" src="/avatar.png" alt="Nama User" />
+      <HStack flex="1" gap="3">
+        <Image w="8" h="8" rounded="md" objectFit="cover" src="/avatar.png" alt="Nama User" />
         <Box textAlign="start">
-          <Box noOfLines={1} fontWeight="semibold">
-            {user?.name}
-          </Box>
+          <Box fontWeight="semibold">{user?.name}</Box>
           <Box fontSize="xs" color="gray.400">
             {user?.email}
           </Box>
@@ -75,11 +71,10 @@ export const NavAccount = () => {
   const form = useForm();
 
   return (
-    <Menu matchWidth>
+    <MenuRoot matchWidth>
       <NavAccountButton />
-      <MenuList shadow="lg" py="4" px="3">
-        <NavAccountItem label="User Profile" as={Link} href="/profile" />
-        <MenuDivider />
+      <MenuContent>
+        <NavAccountItem label="User Profile" />
         <NavAccountItem
           label="Logout"
           onClick={(e) => {
@@ -88,7 +83,7 @@ export const NavAccount = () => {
             form.post("/logout");
           }}
         />
-      </MenuList>
-    </Menu>
+      </MenuContent>
+    </MenuRoot>
   );
 };
