@@ -25,9 +25,11 @@ final class NavigationManager
     {
         $groups = \collect($this->getNavigationGroups())
             ->sortBy(fn (NavigationGroup $group): int => $group->getSort())
-            ->groupBy(fn (NavigationGroup $group): string => $group->getLabel() ?? '')
+            ->groupBy(fn (NavigationGroup $group): string => $group->getGroupKey())
             ->map(function (Collection $collection, string $key) {
-                return NavigationGroup::new()->label($key)->menus(
+                [$label, $icon] = \str_contains($key, '|') ? \explode('|', $key) : [$key, null];
+
+                return NavigationGroup::new()->label($label)->icon($icon)->menus(
                     $collection
                         ->map(fn (NavigationGroup $group) => $group->getMenus())
                         ->flatten()
@@ -37,7 +39,7 @@ final class NavigationManager
             });
 
         if ($user->getAttribute('is_super_admin')) {
-            return $groups->values()->all();
+            return $groups->values()->toArray();
         }
 
         return \collect($groups)
@@ -60,6 +62,6 @@ final class NavigationManager
             })
             ->reject(fn (NavigationGroup $group) => \count($group->getMenus()) <= 0)
             ->values()
-            ->all();
+            ->toArray();
     }
 }

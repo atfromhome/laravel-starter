@@ -25,7 +25,7 @@ final class NavigationItem implements Arrayable
 
     public static function new(): self
     {
-        return new self();
+        return new self;
     }
 
     public function label(string $label): self
