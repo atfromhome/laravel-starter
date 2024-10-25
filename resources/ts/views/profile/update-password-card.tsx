@@ -1,28 +1,13 @@
-import {
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  CardProps,
-  Checkbox,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  VStack,
-  chakra,
-  useBoolean,
-  useToast
-} from "@chakra-ui/react";
+import { Card, chakra, Icon, VStack } from "@chakra-ui/react";
 import { useForm } from "@inertiajs/react";
+import { SaveIcon } from "lucide-react";
+import { Button } from "~/components/ui/button";
+import { Field } from "~/components/ui/field";
+import { PasswordInput } from "~/components/ui/password-input";
 
-type UpdatePasswordCardProps = CardProps;
+type UpdatePasswordCardProps = Omit<Card.RootProps, "children">;
 
 export const UpdatePasswordCard = ({ ...props }: UpdatePasswordCardProps) => {
-  const toast = useToast();
-
-  const [showPassword, handleShowPassword] = useBoolean(false);
-
   const form = useForm({
     password: "",
     current_password: "",
@@ -30,7 +15,7 @@ export const UpdatePasswordCard = ({ ...props }: UpdatePasswordCardProps) => {
   });
 
   return (
-    <Card
+    <Card.Root
       as={chakra.form}
       onSubmit={(e) => {
         e.preventDefault();
@@ -38,64 +23,64 @@ export const UpdatePasswordCard = ({ ...props }: UpdatePasswordCardProps) => {
         form.put("/user/password", {
           preserveState: false,
           onSuccess: () => {
-            toast({
-              title: "Berhasil!!",
-              description: "Password login anda berhasil di ubah",
-              status: "success"
-            });
+            form.reset();
           }
         });
       }}
       w="full"
       {...props}
     >
-      <CardBody>
-        <VStack align="stretch" spacing={4}>
-          <FormControl isRequired isInvalid={Boolean(form.errors.current_password)}>
-            <FormLabel htmlFor="current_password">Current Password</FormLabel>
-            <Input
+      <Card.Body>
+        <VStack align="stretch" gap={4}>
+          <Field
+            label="Current Password"
+            required
+            invalid={Boolean(form.errors.current_password)}
+            errorText={form.errors.current_password}
+          >
+            <PasswordInput
               id="current_password"
-              type={showPassword ? "text" : "password"}
               placeholder="Your current password"
               value={form.data.current_password}
               onChange={(e) => form.setData("current_password", e.target.value)}
             />
-            <FormErrorMessage>{form.errors.current_password}</FormErrorMessage>
-          </FormControl>
-          <FormControl isRequired isInvalid={Boolean(form.errors.password)}>
-            <FormLabel htmlFor="password">New Password</FormLabel>
-            <Input
+          </Field>
+          <Field
+            label="New Password"
+            required
+            invalid={Boolean(form.errors.password)}
+            errorText={form.errors.password}
+          >
+            <PasswordInput
               id="password"
               placeholder="Your new password"
-              type={showPassword ? "text" : "password"}
               value={form.data.password}
               onChange={(e) => form.setData("password", e.target.value)}
             />
-            <FormErrorMessage>{form.errors.password}</FormErrorMessage>
-          </FormControl>
-          <FormControl isRequired isInvalid={Boolean(form.errors.password_confirmation)}>
-            <FormLabel htmlFor="password_confirmation">Confirm New Password</FormLabel>
-            <Input
+          </Field>
+          <Field
+            label="Confirm New Password"
+            required
+            invalid={Boolean(form.errors.password_confirmation)}
+            errorText={form.errors.password_confirmation}
+          >
+            <PasswordInput
               id="password_confirmation"
-              type={showPassword ? "text" : "password"}
               placeholder="Confirm your new password"
               value={form.data.password_confirmation}
               onChange={(e) => form.setData("password_confirmation", e.target.value)}
             />
-            <FormErrorMessage>{form.errors.password_confirmation}</FormErrorMessage>
-          </FormControl>
-          <FormControl>
-            <Checkbox checked={showPassword} onChange={handleShowPassword.toggle}>
-              Show password
-            </Checkbox>
-          </FormControl>
+          </Field>
         </VStack>
-      </CardBody>
-      <CardFooter justifyContent="end">
-        <Button type="submit" isLoading={form.processing} loadingText="Saving">
-          Save
+      </Card.Body>
+      <Card.Footer justifyContent="end">
+        <Button type="submit" loading={form.processing} loadingText="Menyimpan">
+          <Icon asChild boxSize={4}>
+            <SaveIcon />
+          </Icon>{" "}
+          Simpan
         </Button>
-      </CardFooter>
-    </Card>
+      </Card.Footer>
+    </Card.Root>
   );
 };

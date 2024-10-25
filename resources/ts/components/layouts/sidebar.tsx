@@ -1,12 +1,14 @@
-import { Box, Flex, Stack } from "@chakra-ui/react";
-import { NavAccount } from "./nav-account";
+import { Box, BoxProps, Flex, Stack } from "@chakra-ui/react";
 import { NavGroup } from "./nav-group";
 import { NavItem } from "./nav-item";
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import { useAppMenus } from "./menus";
 import { usePage } from "@inertiajs/react";
+import { NavAccountMenu, NavBrandButton } from "./nav-account";
 
-export const Sidebar = () => {
+type SidebarProps = Omit<BoxProps, "children">;
+
+export const SidebarMenu = () => {
   const page = usePage();
   const appMenus = useAppMenus();
 
@@ -28,22 +30,28 @@ export const Sidebar = () => {
     [appMenus]
   );
 
+  return <Fragment>{renderMenus}</Fragment>;
+};
+
+export const Sidebar = (props: SidebarProps) => {
   return (
     <Box
-      maxW={{ base: "full", sm: "18rem" }}
-      w={{ base: "full", sm: "18rem" }}
-      bg="white"
-      color="stale.600"
+      maxW={{ base: "full", sm: "20rem" }}
+      w={{ base: "full", sm: "20rem" }}
+      bg="primary.50"
+      color="primary.600"
       fontSize="sm"
       borderRight="1px"
-      borderRightColor="stale.100"
+      borderRightColor="primary.500"
       h="full"
+      {...props}
     >
-      <Flex h="full" direction="column" px="4" py="4">
-        <NavAccount />
-        <Stack spacing="8" flex="1" overflowY="auto" mt={2} pt="6">
-          {renderMenus}
+      <Flex h="full" direction="column" px="4" py="2">
+        <NavBrandButton />
+        <Stack gap="6" flex="1" overflowY="auto" pt="2">
+          <SidebarMenu />
         </Stack>
+        <NavAccountMenu />
       </Flex>
     </Box>
   );

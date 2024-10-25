@@ -1,21 +1,20 @@
-import { As, Box, HStack, Icon, Text } from "@chakra-ui/react";
+import { Box, HStack, Icon, Text } from "@chakra-ui/react";
 import { Link } from "@inertiajs/react";
 import { ChevronRightIcon, LucideProps } from "lucide-react";
 import dynamicIconImports from "lucide-react/dynamicIconImports";
 import { ReactElement, ReactNode, Suspense, lazy } from "react";
 
 export interface NavItemProps {
-  linkElement?: As;
   href: string;
   label: string;
   subtle?: boolean;
   active?: boolean;
-  icon: As;
+  icon: ReactNode;
   endElement?: ReactElement;
   children?: ReactNode;
 }
 
-interface NavItemIconProps extends LucideProps {
+interface NavItemIconProps extends Omit<LucideProps, "ref"> {
   name: keyof typeof dynamicIconImports;
 }
 
@@ -32,34 +31,34 @@ const NavItemIcon = ({ name, ...props }: NavItemIconProps) => {
 };
 
 export const NavItem = (props: NavItemProps) => {
-  const { active, subtle, icon, children, label, endElement, href, linkElement } = props;
+  const { active, subtle, icon, children, label, endElement, href } = props;
 
   return (
-    <HStack
-      as={linkElement || Link}
-      href={href}
-      w="full"
-      px="3"
-      py="2"
-      cursor="pointer"
-      userSelect="none"
-      rounded="md"
-      transition="all 0.2s"
-      color={subtle ? "primary.400" : active ? "white" : undefined}
-      bg={active ? "primary.600" : undefined}
-      _hover={{ bg: "primary.600", color: "white", textDecoration: "none" }}
-      _active={{ bg: "primary.600", color: "white" }}
-    >
-      <HStack w="full">
-        {typeof icon !== "string" ? (
-          <Icon as={icon} boxSize={4} />
-        ) : (
-          <NavItemIcon size="1rem" name={icon as keyof typeof dynamicIconImports} />
-        )}
-        <Text fontWeight="inherit">{label}</Text>
+    <Link href={href}>
+      <HStack
+        w="full"
+        px="3"
+        py="2"
+        cursor="pointer"
+        userSelect="none"
+        rounded="md"
+        transition="all 0.2s"
+        color={subtle ? "primary.400" : active ? "white" : undefined}
+        bg={active ? "primary.600" : undefined}
+        _hover={{ bg: "primary.600", color: "white", textDecoration: "none" }}
+        _active={{ bg: "primary.600", color: "white" }}
+      >
+        <HStack w="full">
+          {typeof icon !== "string" ? (
+            <Icon boxSize={4}>{icon}</Icon>
+          ) : (
+            <NavItemIcon size="1rem" name={icon as keyof typeof dynamicIconImports} />
+          )}
+          <Text fontWeight="inherit">{label}</Text>
+        </HStack>
+        {endElement && !children && <Box>{endElement}</Box>}
+        {children && <Box fontSize="xs" flexShrink={0} as={ChevronRightIcon} />}
       </HStack>
-      {endElement && !children && <Box>{endElement}</Box>}
-      {children && <Box fontSize="xs" flexShrink={0} as={ChevronRightIcon} />}
-    </HStack>
+    </Link>
   );
 };

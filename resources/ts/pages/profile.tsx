@@ -1,4 +1,4 @@
-import { Box, GridItem, SimpleGrid, Stack, StackDivider, Text } from "@chakra-ui/react";
+import { Box, GridItem, SimpleGrid, Stack, StackSeparator, Text } from "@chakra-ui/react";
 import { AppPage } from "~/components";
 import { UseUserReturn } from "~/hooks";
 import { PersonalInfoCard, UpdatePasswordCard } from "~/views";
@@ -10,7 +10,7 @@ type PageProps = {
 const Page = ({ user }: PageProps) => {
   return (
     <AppPage title="Profile">
-      <Stack spacing="6" divider={<StackDivider borderColor="primary.100" />}>
+      <Stack gap="6" separator={<StackSeparator borderColor="primary.100" />}>
         <SimpleGrid columns={{ base: 1, lg: 3 }} gap={{ base: "5", lg: "8" }}>
           <Box flexShrink={0}>
             <Text fontSize="lg" fontWeight="medium">

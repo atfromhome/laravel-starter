@@ -28,13 +28,12 @@ function Page(props: PageProps) {
         <title>Login</title>
       </Head>
 
-      <Container>
+      <Container fluid maxWidth={{ base: "full", md: "xl" }}>
         <Center pb={8}>
           <Logo h={14} />
         </Center>
         <Card.Root
           as={chakra.form}
-          variant="elevated"
           onSubmit={(e) => {
             e.preventDefault();
 
@@ -75,15 +74,11 @@ function Page(props: PageProps) {
               <HStack justify="space-between">
                 <Checkbox
                   checked={form.data.remember}
-                  onCheckedChange={(e) => form.setData("remember", e.target.checked)}
+                  onCheckedChange={(e) => form.setData("remember", !!e.checked)}
                 >
                   Remember me
                 </Checkbox>
-                {feature.resetPasswords && (
-                  <Button variant="plain" asChild>
-                    <Link href="/forgot-password">Forgot password?</Link>
-                  </Button>
-                )}
+                {feature.resetPasswords && <Link href="/forgot-password">Forgot password?</Link>}
               </HStack>
             </VStack>
           </Card.Body>
@@ -94,11 +89,8 @@ function Page(props: PageProps) {
           </Card.Footer>
         </Card.Root>
         {feature.registration && (
-          <Text color="primary.400" textAlign="center" mt={5}>
-            Do not have an account yet?{" "}
-            <Button asChild variant="plain" color="primary.400">
-              <Link href="/register">Create account</Link>
-            </Button>
+          <Text textAlign="center" mt={5}>
+            Do not have an account yet? <Link href="/register">Create account</Link>
           </Text>
         )}
       </Container>
