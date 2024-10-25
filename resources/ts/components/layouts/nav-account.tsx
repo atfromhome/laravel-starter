@@ -1,94 +1,132 @@
+import { Box, Flex, FlexProps, HStack, Icon } from "@chakra-ui/react";
+import { Link, router } from "@inertiajs/react";
 import {
-  Box,
-  Flex,
-  FlexProps,
-  HStack,
-  Icon,
-  Img,
-  Menu,
-  MenuDivider,
-  MenuItem,
-  MenuItemProps,
-  MenuList,
-  useMenuButton
-} from "@chakra-ui/react";
-import { InertiaLinkProps, Link, useForm } from "@inertiajs/react";
-import { ChevronsUpDown } from "lucide-react";
+  BoxIcon,
+  ChevronsUpDownIcon,
+  CircleUserRoundIcon,
+  LogOutIcon,
+  UserCircle2Icon
+} from "lucide-react";
 import { useUser } from "~/hooks";
+import { MenuContent, MenuItem, MenuRoot, MenuSeparator, MenuTrigger } from "../ui/menu";
+import { Fragment, ReactNode } from "react";
 
-export const NavAccountButton = (props: FlexProps) => {
+export const NavBrandButton = (props: FlexProps) => {
+  return (
+    <Link href="/">
+      <Flex
+        px="2"
+        py="2"
+        w="full"
+        border="1px"
+        rounded="md"
+        display="flex"
+        alignItems="center"
+        userSelect="none"
+        cursor="pointer"
+        _hover={{ bg: "primary.100" }}
+        {...props}
+      >
+        <HStack flex="1" gap="3">
+          <Icon boxSize="8" bg="primary.600" p={1} rounded="md">
+            <BoxIcon color="white" />
+          </Icon>
+          <Box textAlign="start">
+            <Box fontWeight="semibold">Starter Inc</Box>
+            <Box fontSize="xs" color="primary.500">
+              FromHome
+            </Box>
+          </Box>
+        </HStack>
+      </Flex>
+    </Link>
+  );
+};
+
+const AvatarIcon = () => {
+  return (
+    <Icon boxSize="8" bg="primary.600" p={1} rounded="md">
+      <CircleUserRoundIcon color="white" />
+    </Icon>
+  );
+};
+
+export const NavAccountButton = ({
+  icon = null,
+  withIcon = true,
+  avatarPosition = "left",
+  ...props
+}: FlexProps & {
+  withIcon?: boolean;
+  icon?: ReactNode;
+  avatarPosition?: "left" | "right";
+}) => {
   const user = useUser();
-  const buttonProps = useMenuButton(props);
 
   return (
     <Flex
-      as="button"
-      {...buttonProps}
+      px="2"
+      py="2"
       w="full"
+      border="1px"
+      rounded="md"
       display="flex"
       alignItems="center"
-      rounded="lg"
-      px="4"
-      py="2"
-      fontSize="sm"
       userSelect="none"
       cursor="pointer"
-      outline="0"
-      border="1px"
-      borderColor="stale.100"
-      transition="all 0.2s"
-      _focus={{ shadow: "outline", boxShadow: "none" }}
+      _hover={{ bg: "primary.100" }}
+      {...props}
     >
-      <HStack flex="1" spacing="3">
-        <Img w="8" h="8" rounded="md" objectFit="cover" src="/avatar.png" alt="Nama User" />
+      <HStack flex="1" gap="4">
+        {avatarPosition === "left" && <AvatarIcon />}
         <Box textAlign="start">
-          <Box noOfLines={1} fontWeight="semibold">
-            {user?.name}
-          </Box>
-          <Box fontSize="xs" color="gray.400">
+          <Box fontWeight="semibold">{user?.name}</Box>
+          <Box fontSize="xs" color="primary.500">
             {user?.email}
           </Box>
         </Box>
+        {avatarPosition === "right" && <AvatarIcon />}
       </HStack>
-      <Box fontSize="lg" color="gray.400">
-        <Icon as={ChevronsUpDown} />
-      </Box>
+      {withIcon && (
+        <Fragment>
+          {icon || (
+            <Icon boxSize="4">
+              <ChevronsUpDownIcon />
+            </Icon>
+          )}
+        </Fragment>
+      )}
     </Flex>
   );
 };
 
-const NavAccountItem = (
-  props: Omit<MenuItemProps, "children"> & { label: string } & Partial<Omit<InertiaLinkProps, "as">>
-) => (
-  <MenuItem
-    rounded="md"
-    {...props}
-    _hover={{ bg: "primary.600", color: "white" }}
-    _active={{ bg: "primary.600", color: "white" }}
-    _focus={{ bg: "primary.600", color: "white" }}
-  >
-    {props.label}
-  </MenuItem>
-);
-
-export const NavAccount = () => {
-  const form = useForm();
-
+export const NavAccountMenu = () => {
   return (
-    <Menu matchWidth>
-      <NavAccountButton />
-      <MenuList shadow="lg" py="4" px="3">
-        <NavAccountItem label="User Profile" as={Link} href="/profile" />
-        <MenuDivider />
-        <NavAccountItem
-          label="Logout"
-          onClick={(e) => {
-            e.preventDefault();
-
-            form.post("/logout");
-          }}
-        />
-      </MenuList>
-    </Menu>
+    <MenuRoot positioning={{ placement: "right-start" }}>
+      <MenuTrigger>
+        <NavAccountButton />
+      </MenuTrigger>
+      <MenuContent width="48">
+        <MenuItem value="profile" style={{ cursor: "pointer" }} asChild>
+          <Link href="/profile">
+            <Icon asChild>
+              <UserCircle2Icon />
+            </Icon>
+            Profile
+          </Link>
+        </MenuItem>
+        <MenuSeparator />
+        <MenuItem
+          value="logout"
+          style={{ cursor: "pointer" }}
+          onClick={() => router.post("/logout")}
+        >
+          <Icon asChild>
+            <LogOutIcon />
+          </Icon>
+          Logout
+        </MenuItem>
+      </MenuContent>
+    </MenuRoot>
   );
 };

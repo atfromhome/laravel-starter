@@ -17,18 +17,25 @@ final class NavigationGroup implements Arrayable
 
     private ?string $label = null;
 
+    private ?string $icon = null;
+
     private int $sort = 0;
 
     private function __construct() {}
 
     public static function new(): self
     {
-        return new self();
+        return new self;
     }
 
     public function getLabel(): ?string
     {
         return $this->label;
+    }
+
+    public function getIcon(): ?string
+    {
+        return $this->icon;
     }
 
     /**
@@ -44,7 +51,27 @@ final class NavigationGroup implements Arrayable
         return $this->sort;
     }
 
-    public function label(string $label): self
+    public function getGroupKey(): string
+    {
+        if ($this->getLabel() && $this->getIcon()) {
+            return $this->getLabel().'|'.$this->getIcon();
+        }
+
+        if ($this->getLabel() && $this->getIcon() === null) {
+            return $this->getLabel();
+        }
+
+        return '';
+    }
+
+    public function icon(?string $icon): self
+    {
+        $this->icon = $icon;
+
+        return $this;
+    }
+
+    public function label(?string $label): self
     {
         $this->label = $label;
 
@@ -74,6 +101,7 @@ final class NavigationGroup implements Arrayable
     public function toArray(): array
     {
         return [
+            'icon' => $this->getIcon(),
             'label' => $this->getLabel(),
             'menus' => \array_map(static fn (Arrayable $item) => $item->toArray(), $this->getMenus()),
         ];

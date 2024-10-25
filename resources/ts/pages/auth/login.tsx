@@ -1,26 +1,12 @@
-import {
-  Alert,
-  AlertIcon,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Center,
-  Checkbox,
-  Container,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  HStack,
-  Input,
-  Text,
-  VStack,
-  chakra
-} from "@chakra-ui/react";
+import { Card, Center, chakra, Container, HStack, Input, Text, VStack } from "@chakra-ui/react";
 import { Head, Link, useForm } from "@inertiajs/react";
 import { Fragment, ReactNode } from "react";
 import { Logo } from "~/components";
-import { PasswordInput } from "~/components/forms";
+import { Alert } from "~/components/ui/alert";
+import { Button } from "~/components/ui/button";
+import { Checkbox } from "~/components/ui/checkbox";
+import { Field } from "~/components/ui/field";
+import { PasswordInput } from "~/components/ui/password-input";
 import { useFortifyFeature } from "~/hooks";
 
 type PageProps = {
@@ -42,76 +28,69 @@ function Page(props: PageProps) {
         <title>Login</title>
       </Head>
 
-      <Container>
+      <Container fluid maxWidth={{ base: "full", md: "xl" }}>
         <Center pb={8}>
           <Logo h={14} />
         </Center>
-        <Card
+        <Card.Root
           as={chakra.form}
-          variant="elevated"
           onSubmit={(e) => {
             e.preventDefault();
 
             form.post("/login");
           }}
         >
-          <CardBody>
-            <VStack align="stretch" spacing={4}>
-              {props.status && (
-                <Alert status="info" rounded="md">
-                  <AlertIcon />
-                  {props.status}
-                </Alert>
-              )}
-              <FormControl isRequired isInvalid={Boolean(form.errors.email)}>
-                <FormLabel htmlFor="email">Email</FormLabel>
+          <Card.Body>
+            <VStack align="stretch" gap={4}>
+              {props.status && <Alert status="info">{props.status}</Alert>}
+              <Field
+                label="Email"
+                required
+                invalid={Boolean(form.errors.email)}
+                errorText={form.errors.email}
+              >
                 <Input
-                  type="email"
                   id="email"
+                  type="email"
                   placeholder="you@example.com"
                   autoComplete="off"
                   value={form.data.email}
                   onChange={(e) => form.setData("email", e.target.value)}
                 />
-                <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-              </FormControl>
-              <FormControl isRequired isInvalid={Boolean(form.errors.password)}>
-                <FormLabel htmlFor="password">Password</FormLabel>
+              </Field>
+              <Field
+                label="Password"
+                required
+                invalid={Boolean(form.errors.password)}
+                errorText={form.errors.password}
+              >
                 <PasswordInput
                   id="password"
                   placeholder="Your password"
                   value={form.data.password}
                   onChange={(e) => form.setData("password", e.target.value)}
                 />
-                <FormErrorMessage>{form.errors.password}</FormErrorMessage>
-              </FormControl>
+              </Field>
               <HStack justify="space-between">
                 <Checkbox
                   checked={form.data.remember}
-                  onChange={(e) => form.setData("remember", e.target.checked)}
+                  onCheckedChange={(e) => form.setData("remember", !!e.checked)}
                 >
                   Remember me
                 </Checkbox>
-                {feature.resetPasswords && (
-                  <Button variant="link" as={Link} href="/forgot-password">
-                    Forgot password?
-                  </Button>
-                )}
+                {feature.resetPasswords && <Link href="/forgot-password">Forgot password?</Link>}
               </HStack>
             </VStack>
-          </CardBody>
-          <CardFooter>
-            <Button w="full" type="submit" isLoading={form.processing}>
+          </Card.Body>
+          <Card.Footer>
+            <Button w="full" type="submit" loading={form.processing}>
               Sign in
             </Button>
-          </CardFooter>
-        </Card>
+          </Card.Footer>
+        </Card.Root>
         {feature.registration && (
-          <Text color="primary.400" align="center" mt={5}>
-            Do not have an account yet?{" "}
-            <Button as={Link} href="/register" variant="link" color="primary.400">
-              Create account
-            </Button>
+          <Text textAlign="center" mt={5}>
+            Do not have an account yet? <Link href="/register">Create account</Link>
           </Text>
         )}
       </Container>

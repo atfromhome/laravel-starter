@@ -1,87 +1,61 @@
+import { Box, BoxProps, Flex, HStack, Icon, IconButton, Stack } from "@chakra-ui/react";
+import { SidebarMenu } from "./sidebar";
 import {
-  Box,
-  Drawer,
+  DrawerBackdrop,
+  DrawerBody,
+  DrawerCloseTrigger,
   DrawerContent,
-  DrawerOverlay,
-  Flex,
-  IconButton,
-  IconButtonProps,
-  chakra,
-  useDisclosure
-} from "@chakra-ui/react";
-import { Sidebar } from "./sidebar";
+  DrawerFooter,
+  DrawerHeader,
+  DrawerRoot,
+  DrawerTrigger
+} from "../ui/drawer";
+import { NavAccountButton, NavBrandButton } from "./nav-account";
+import { LogOutIcon, MenuIcon, UserCircle2Icon } from "lucide-react";
+import { Link, router } from "@inertiajs/react";
 
-const Bar = chakra("span", {
-  baseStyle: {
-    display: "block",
-    pos: "absolute",
-    w: "1.25rem",
-    h: "0.125rem",
-    rounded: "full",
-    bg: "currentcolor",
-    mx: "auto",
-    insetStart: "0.125rem",
-    transition: "all 0.12s"
-  }
-});
+export type NavbarProps = Omit<BoxProps, "children">;
 
-const ToggleIcon = (props: { active: boolean }) => {
-  const { active } = props;
+export const Navbar = (props: NavbarProps) => {
   return (
-    <Box
-      className="group"
-      data-active={active ? "" : undefined}
-      as="span"
-      display="block"
-      w="1.5rem"
-      h="1.5rem"
-      pos="relative"
-      aria-hidden
-      pointerEvents="none"
-    >
-      <Bar top="0.4375rem" _groupActive={{ top: "0.6875rem", transform: "rotate(45deg)" }} />
-      <Bar bottom="0.4375rem" _groupActive={{ bottom: "0.6875rem", transform: "rotate(-45deg)" }} />
-    </Box>
-  );
-};
-
-interface ToggleButtonProps extends IconButtonProps {
-  isOpen: boolean;
-}
-
-const ToggleButton = (props: ToggleButtonProps) => {
-  const { isOpen, ...iconButtonProps } = props;
-  return (
-    <IconButton
-      position="relative"
-      variant="unstyled"
-      size="sm"
-      color="fg.accent.default"
-      zIndex="skipLink"
-      icon={<ToggleIcon active={isOpen} />}
-      {...iconButtonProps}
-    />
-  );
-};
-
-export const Navbar = () => {
-  const { isOpen, onToggle, onClose } = useDisclosure();
-  return (
-    <Box width="full" py="4" px={{ base: "4", md: "8" }}>
-      <Flex justify="end">
-        <ToggleButton isOpen={isOpen} aria-label="Open Menu" onClick={onToggle} />
-        <Drawer
-          isOpen={isOpen}
-          placement="left"
-          onClose={onClose}
-          isFullHeight
-          preserveScrollBarGap
-        >
-          <DrawerOverlay />
-          <DrawerContent maxW={{ base: "full", sm: "18rem" }} w={{ base: "full", sm: "18rem" }}>
-            <Sidebar />
-          </DrawerContent>
-        </Drawer>
+    <Box width="full" py="2" px={{ base: "1", md: "3" }} {...props}>
+      <Flex justify="space-between" align="center">
+        <NavBrandButton _hover={{ bg: "primary.50" }} />
+        <HStack>
+          <IconButton variant="ghost" asChild>
+            <Link href="/profile">
+              <UserCircle2Icon />
+            </Link>
+          </IconButton>
+          <DrawerRoot placement="start">
+            <DrawerBackdrop />
+            <DrawerTrigger asChild>
+              <IconButton variant="ghost">
+                <MenuIcon />
+              </IconButton>
+            </DrawerTrigger>
+            <DrawerContent>
+              <DrawerCloseTrigger />
+              <DrawerHeader />
+              <DrawerBody asChild>
+                <Stack gap="6" flex="1" overflowY="auto" pt="2">
+                  <SidebarMenu />
+                </Stack>
+              </DrawerBody>
+              <DrawerFooter>
+                <NavAccountButton
+                  cursor="inherit"
+                  _hover={{ bg: "white" }}
+                  icon={
+                    <Icon boxSize={5} cursor="pointer" asChild>
+                      <LogOutIcon onClick={() => router.post("/logout")} />
+                    </Icon>
+                  }
+                />
+              </DrawerFooter>
+            </DrawerContent>
+          </DrawerRoot>
+        </HStack>
       </Flex>
     </Box>
   );

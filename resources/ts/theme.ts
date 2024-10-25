@@ -1,19 +1,12 @@
-import { extendTheme, withDefaultColorScheme, withDefaultProps } from "@chakra-ui/react";
-import { components, foundations, styles } from "./themes";
+import { foundations } from "./themes";
+import { createSystem, defaultConfig, defineConfig } from "@chakra-ui/react";
 
-const theme = extendTheme(
-  {
-    ...foundations,
-    styles,
-    components
-  },
-  withDefaultColorScheme({ colorScheme: "primary" }),
-  withDefaultProps({
-    defaultProps: {
-      variant: "outline"
-    },
-    components: ["Card"]
-  })
-);
+const config = defineConfig({
+  theme: {
+    tokens: { ...foundations }
+  }
+});
+
+const theme = createSystem(defaultConfig, config);
 
 export default theme;

@@ -1,28 +1,16 @@
-import {
-  Alert,
-  AlertIcon,
-  Button,
-  Card,
-  CardBody,
-  CardFooter,
-  Center,
-  Container,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Input,
-  Text,
-  VStack,
-  chakra
-} from "@chakra-ui/react";
+import { Card, Center, chakra, Container, Input, Text, VStack } from "@chakra-ui/react";
 import { Head, useForm } from "@inertiajs/react";
+import { Fragment, ReactNode } from "react";
 import { Logo } from "~/components";
+import { Alert } from "~/components/ui/alert";
+import { Button } from "~/components/ui/button";
+import { Field } from "~/components/ui/field";
 
 type PageProps = {
   status?: string;
 };
 
-export default function Page(props: PageProps) {
+function Page(props: PageProps) {
   const form = useForm({
     email: ""
   });
@@ -33,35 +21,33 @@ export default function Page(props: PageProps) {
         <title>Forgot Password</title>
       </Head>
 
-      <Container>
+      <Container fluid maxWidth={{ base: "full", md: "xl" }}>
         <Center pb={8}>
           <Logo h={14} />
         </Center>
-        <Card
+        <Card.Root
           as={chakra.form}
-          variant="elevated"
           onSubmit={(e) => {
             e.preventDefault();
 
             form.post("/forgot-password");
           }}
         >
-          <CardBody>
-            <VStack align="stretch" spacing={4}>
+          <Card.Body>
+            <VStack align="stretch" gap={4}>
               <Text>
                 Forgot your password? No problem. Just let us know your email address and we will
                 email you a password reset link that will allow you to choose a new one.
               </Text>
 
-              {props.status && (
-                <Alert rounded="md">
-                  <AlertIcon />
-                  {props.status}
-                </Alert>
-              )}
+              {props.status && <Alert rounded="md">{props.status}</Alert>}
 
-              <FormControl isRequired isInvalid={Boolean(form.errors.email)}>
-                <FormLabel htmlFor="email">Email</FormLabel>
+              <Field
+                label="Email"
+                required
+                invalid={Boolean(form.errors.email)}
+                errorText={form.errors.email}
+              >
                 <Input
                   type="email"
                   id="email"
@@ -70,17 +56,20 @@ export default function Page(props: PageProps) {
                   value={form.data.email}
                   onChange={(e) => form.setData("email", e.target.value)}
                 />
-                <FormErrorMessage>{form.errors.email}</FormErrorMessage>
-              </FormControl>
+              </Field>
             </VStack>
-          </CardBody>
-          <CardFooter>
-            <Button w="full" type="submit" isLoading={form.processing}>
+          </Card.Body>
+          <Card.Footer>
+            <Button w="full" type="submit" loading={form.processing}>
               Email Password Reset Link
             </Button>
-          </CardFooter>
-        </Card>
+          </Card.Footer>
+        </Card.Root>
       </Container>
     </Center>
   );
 }
+
+Page.layout = (page: ReactNode) => <Fragment>{page}</Fragment>;
+
+export default Page;

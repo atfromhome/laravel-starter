@@ -1,11 +1,7 @@
 import colors from "./colors";
-import { fonts } from "./typography";
-import shadows from "./shadows";
-import semanticTokens from "./semantic-tokens";
+import fonts from "./typography";
 
 export const foundations = {
   colors,
-  fonts,
-  shadows,
-  semanticTokens
+  fonts
 };
