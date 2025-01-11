@@ -9,7 +9,7 @@ use Webmozart\Assert\Assert;
 use Illuminate\Contracts\Support\Arrayable;
 
 /**
- * @template-implements Arrayable<array-key, string|null>
+ * @implements Arrayable<array-key,mixed>
  */
 final class NavigationItem implements Arrayable
 {

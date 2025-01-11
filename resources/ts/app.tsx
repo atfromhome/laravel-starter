@@ -34,7 +34,7 @@ createInertiaApp({
   setup({ el, App, props }) {
     createRoot(el).render(
       <StrictMode>
-        <Provider>
+        <Provider defaultTheme="light">
           <App {...props} />
           <Toaster />
         </Provider>

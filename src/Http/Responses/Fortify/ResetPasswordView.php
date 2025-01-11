@@ -14,6 +14,7 @@ final class ResetPasswordView implements ResetPasswordViewResponse
     {
         return Inertia::render('password/reset', [
             'email' => (string) $request->string('email'),
+            /** @phpstan-ignore-next-line */
             'token' => (string) $request->route('token'),
             'status' => $request->session()->get('status'),
         ])->toResponse($request);

@@ -8,6 +8,9 @@ use App\Models\User;
 
 final class Navigation
 {
+    /**
+     * @param  NavigationGroup[]  $groups
+     */
     public static function registerNavigationGroups(array $groups): void
     {
         /** @var NavigationManager $manager */
@@ -16,6 +19,9 @@ final class Navigation
         $manager->registerNavigationGroups($groups);
     }
 
+    /**
+     * @return NavigationGroup[]
+     */
     public static function getNavigationGroups(): array
     {
         /** @var NavigationManager $manager */
@@ -24,6 +30,9 @@ final class Navigation
         return $manager->getNavigationGroups();
     }
 
+    /**
+     * @return NavigationGroup[]
+     */
     public static function getUserNavigationGroups(?User $user = null): array
     {
         if ($user === null) {

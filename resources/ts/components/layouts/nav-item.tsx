@@ -1,8 +1,8 @@
 import { Box, HStack, Icon, Text } from "@chakra-ui/react";
 import { Link } from "@inertiajs/react";
-import { ChevronRightIcon, LucideProps } from "lucide-react";
-import dynamicIconImports from "lucide-react/dynamicIconImports";
-import { ReactElement, ReactNode, Suspense, lazy } from "react";
+import { ChevronRightIcon } from "lucide-react";
+import { DynamicIcon, IconName } from "lucide-react/dynamic";
+import { ReactElement, ReactNode } from "react";
 
 export interface NavItemProps {
   href: string;
@@ -13,22 +13,6 @@ export interface NavItemProps {
   endElement?: ReactElement;
   children?: ReactNode;
 }
-
-interface NavItemIconProps extends Omit<LucideProps, "ref"> {
-  name: keyof typeof dynamicIconImports;
-}
-
-const fallback = <div style={{ background: "#ddd", width: 24, height: 24 }} />;
-
-const NavItemIcon = ({ name, ...props }: NavItemIconProps) => {
-  const LucideIcon = lazy(dynamicIconImports[name]);
-
-  return (
-    <Suspense fallback={fallback}>
-      <LucideIcon {...props} />
-    </Suspense>
-  );
-};
 
 export const NavItem = (props: NavItemProps) => {
   const { active, subtle, icon, children, label, endElement, href } = props;
@@ -52,7 +36,7 @@ export const NavItem = (props: NavItemProps) => {
           {typeof icon !== "string" ? (
             <Icon boxSize={4}>{icon}</Icon>
           ) : (
-            <NavItemIcon size="1rem" name={icon as keyof typeof dynamicIconImports} />
+            <DynamicIcon size="1rem" name={icon as IconName} />
           )}
           <Text fontWeight="inherit">{label}</Text>
         </HStack>

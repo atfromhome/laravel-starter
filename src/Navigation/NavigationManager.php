@@ -9,18 +9,28 @@ use Illuminate\Support\Collection;
 
 final class NavigationManager
 {
+    /** @var NavigationGroup[] */
     private array $navigationGroups = [];
 
+    /**
+     * @param  NavigationGroup[]  $groups
+     */
     public function registerNavigationGroups(array $groups): void
     {
         $this->navigationGroups = \array_merge($this->navigationGroups, $groups);
     }
 
+    /**
+     * @return NavigationGroup[]
+     */
     public function getNavigationGroups(): array
     {
         return $this->navigationGroups;
     }
 
+    /**
+     * @return NavigationGroup[]
+     */
     public function getUserNavigationGroups(User $user): array
     {
         $groups = \collect($this->getNavigationGroups())

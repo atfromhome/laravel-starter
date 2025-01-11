@@ -12,6 +12,9 @@ use Laravel\Fortify\Contracts\UpdatesUserPasswords;
 
 final class UpdateUserPassword implements UpdatesUserPasswords
 {
+    /**
+     * @param  string[]  $input
+     */
     public function update(User $user, array $input): void
     {
         Validator::make($input, [
