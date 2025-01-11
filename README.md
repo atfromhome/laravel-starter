@@ -10,9 +10,9 @@ This is Laravel starter project built using Laravel Fortify, Inertia and Chakra 
 
 | | |
 |:---:|:---:|
-| <img src="art/login.png" alt="Login page"> | <img src="art/register.png" alt="Register page"> |
-| <img src="art/reset-password.png" alt="Reset password page"> | <img src="art/home.png" alt="Home page"> |
-| <img src="art/user-profile.png" alt="User profile page"> | |
+| <img src="arts/login.png" alt="Login page"> | <img src="arts/register.png" alt="Register page"> |
+| <img src="arts/reset-password.png" alt="Reset password page"> | <img src="arts/home.png" alt="Home page"> |
+| <img src="arts/user-profile.png" alt="User profile page"> | |
 
 
 ## Installation
@@ -41,7 +41,7 @@ This project comes with two app layouts: `AppSidebarLayout` and `AppTopbarLayout
 
 | `AppSidebarLayout`      | `AppTopbarLayout`       |
 |:-----------------------:|:-----------------------:|
-| <img src="art/app-sidebar-layout.png" alt="AppSidebarLayout"> | <img src="art/app-topbar-layout.png" alt="AppTopbarLayout"> |
+| <img src="arts/app-sidebar-layout.png" alt="AppSidebarLayout"> | <img src="arts/app-topbar-layout.png" alt="AppTopbarLayout"> |
 
 ### Register new menu
 
