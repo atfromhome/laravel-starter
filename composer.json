@@ -8,18 +8,18 @@
         "php": "^8.2",
         "inertiajs/inertia-laravel": "^2.0.1",
         "laravel/fortify": "^1.25.4",
-        "laravel/framework": "^12.1",
+        "laravel/framework": "^12.8.1",
         "laravel/sanctum": "^4.0.8",
         "laravel/tinker": "^2.10.1",
-        "spatie/laravel-data": "^4.13.2"
+        "spatie/laravel-data": "^4.14.1"
     },
     "require-dev": {
         "fakerphp/faker": "^1.24.1",
-        "larastan/larastan": "^3.1.0",
-        "laravel/pint": "^1.21.0",
+        "larastan/larastan": "^3.3.1",
+        "laravel/pint": "^1.22.0",
         "mockery/mockery": "^1.6.12",
-        "nunomaduro/collision": "^8.6.1",
-        "phpunit/phpunit": "^11.5.10",
+        "nunomaduro/collision": "^8.8.0",
+        "phpunit/phpunit": "^11.5.17",
         "roave/security-advisories": "dev-latest"
     },
     "autoload": {
