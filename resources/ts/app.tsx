@@ -3,7 +3,7 @@ import { createRoot } from "react-dom/client";
 import { resolvePageComponent } from "laravel-vite-plugin/inertia-helpers";
 import { StrictMode } from "react";
 import { AppSidebarLayout } from "./components";
-import { Provider } from "./components/ui/provider";
+import { Provider } from "./components/ui/custom/provider";
 
 import "@fontsource-variable/inter";
 import { Toaster } from "./components/ui/toaster";
