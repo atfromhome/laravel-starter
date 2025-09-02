@@ -19,7 +19,7 @@
     "eslint-plugin-prettier": "^5.2.6",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.0.0",
-    "laravel-vite-plugin": "^1.2.0",
+    "laravel-vite-plugin": "^2.0.1",
     "prettier": "3.5.3",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
